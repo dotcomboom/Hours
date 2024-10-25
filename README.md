@@ -14,8 +14,9 @@ https://github.com/legacy-icons/famfamfam-silk
 Windows, .NET Framework 4.0. Visual Studio 2010 or later used to build.
 
 Tentatively upcoming:
-[ ] Port to .NET MAUI?
-[ ] Remote web interface?
+
+- [ ] Port to .NET MAUI?
+- [ ] Remote web interface?
 
 ## Features
 
@@ -37,10 +38,10 @@ A project can be grouped into a category with the "Set category..." option on it
 Projects are arranged alphabetically. Categories don't have any particular order beyond what the ListView feels like.
 
 Tentatively upcoming:
-[ ] Welcome screen before you've selected a session (avoid a crash).
-[ ] Rearranging project groups.
-[ ] Persisting "Categories", "Comment View", "Mark today's activities" options across launches.
-[ ] Fine tuning what features are used globally or per activity 
+- [ ] Welcome screen before you've selected a session (avoid a crash).
+- [ ] Rearranging project groups.
+- [ ] Persisting "Categories", "Comment View", "Mark today's activities" options across launches.
+- [ ] Fine tuning what features are used globally or per activity 
 (ratings, average, attachments, 7-day tracker etc)
 
 ### Attachments
@@ -53,11 +54,11 @@ Attachments that are not available locally (i.e. for files that have been delete
 
 
 Attachments are a work in progress feature. Tentatively upcoming:
-[ ] Editing attachments' path and icon (functional Attachments dialog).
-[ ] Removing attachments.
-[ ] Changing the order of attachments.
-[ ] Grouping attachments, such as for multiple weeks or routines.
-[ ] Reordering those groups.
+- [ ] Editing attachments' path and icon (functional Attachments dialog).
+- [ ] Removing attachments.
+- [ ] Changing the order of attachments.
+- [ ] Grouping attachments, such as for multiple weeks or routines.
+- [ ] Reordering those groups.
 
 ### Sessions
 
@@ -66,15 +67,15 @@ Sessions are recorded blocks of time. Their details can be viewed per project on
 The last 7 days' activity is displayed in the project view below the stopwatch in a "habit tracker" kind of format. White denotes no activity, green denoting recorded sessions.
 
 Tentatively upcoming:
-[ ] Daily time amounts.
-[ ] Highlighting that day's activities in the timeline when a day in the tracker is clicked.
+- [ ] Daily time amounts.
+- [ ] Highlighting that day's activities in the timeline when a day in the tracker is clicked.
 
 #### Timing a session
 
 A Session is started by hitting the Start button, and then concluded by hitting the Pause (or Log) button. Pointing the mouse on the hourglass icon (below the pause button) displays the elapsed time in H:MM format.
 
 Tentatively upcoming:
-[ ] Offsetting start times (started earlier).
+- [ ] Offsetting start times (started earlier).
 
 #### Reviewing sessions
 
@@ -106,7 +107,7 @@ Hours can also quickly visualize two times on the bottom left of the window. Whe
 This is separate from recording sessions though - this is a timer (countdown) feature, while that behaves more as a stopwatch (count up).
 
 Tentatively upcoming:
-[ ] Working correctly with past ranges (100%) or next-day end times.
+- [ ] Working correctly with past ranges (100%) or next-day end times.
 
 ## Dealing with Hours data
 
