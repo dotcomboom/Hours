@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3B6EDFCF-FF8D-482C-B896-671E745551EE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>Hours.My.MyApplication</StartupObject>
+    <RootNamespace>Hours</RootNamespace>
+    <AssemblyName>Hours</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Hours.xml</DocumentationFile>
+    <NoWarn>42030,42104,42108,42109</NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Hours.xml</DocumentationFile>
+    <NoWarn>42030,42104,42108,42109</NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>On</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>Off</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>brick.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\Software (.NET Library)\Json130r3\Bin\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Activity.vb" />
+    <Compile Include="ActivityCollection.vb" />
+    <Compile Include="Attachment.vb" />
+    <Compile Include="frmAttachment.Designer.vb">
+      <DependentUpon>frmAttachment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAttachment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWipFeatures.Designer.vb">
+      <DependentUpon>frmWipFeatures.vb</DependentUpon>
+    </Compile>
+    <None Include="frmWipFeatures.vb">
+      <SubType>Form</SubType>
+    </None>
+    <Compile Include="frmWipActivity.Designer.vb">
+      <DependentUpon>frmWipActivity.vb</DependentUpon>
+    </Compile>
+    <None Include="frmWipActivity.vb">
+      <SubType>Form</SubType>
+    </None>
+    <Compile Include="frmWipDayMeter.Designer.vb">
+      <DependentUpon>frmWipDayMeter.vb</DependentUpon>
+    </Compile>
+    <None Include="frmWipDayMeter.vb">
+      <SubType>Form</SubType>
+    </None>
+    <Compile Include="frmDuration.Designer.vb">
+      <DependentUpon>frmDuration.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDuration.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWipKeyboardHints.Designer.vb">
+      <DependentUpon>frmWipKeyboardHints.vb</DependentUpon>
+    </Compile>
+    <None Include="frmWipKeyboardHints.vb">
+      <SubType>Form</SubType>
+    </None>
+    <Compile Include="frmMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.vb">
+      <DependentUpon>frmMain.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMeter.Designer.vb">
+      <DependentUpon>frmMeter.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMeter.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSession.Designer.vb">
+      <DependentUpon>frmSession.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSession.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Meter.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Util.vb" />
+    <Compile Include="Session.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="frmAttachment.resx">
+      <DependentUpon>frmAttachment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWipFeatures.resx">
+      <DependentUpon>frmWipFeatures.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWipActivity.resx">
+      <DependentUpon>frmWipActivity.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWipDayMeter.resx">
+      <DependentUpon>frmWipDayMeter.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDuration.resx">
+      <DependentUpon>frmDuration.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWipKeyboardHints.resx">
+      <DependentUpon>frmWipKeyboardHints.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMeter.resx">
+      <DependentUpon>frmMeter.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSession.resx">
+      <DependentUpon>frmSession.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources1.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="brick.ico" />
+    <Content Include="README.txt" />
+    <None Include="README.md" />
+    <None Include="Resources\hourglass.png" />
+    <None Include="Resources\hourglass_go.png" />
+    <None Include="Resources\brick.ico" />
+    <None Include="Resources\hourglass.ico" />
+    <None Include="Resources\brick.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

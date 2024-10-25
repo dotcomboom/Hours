@@ -1,9 +1,6 @@
-# Hours
+﻿# Hours
 
 Hours is a scrappy time tracker with some added niceties. It's a work in progress, so specifications and features are prone to change.
-
-## License
-Hours source code is MIT licensed.
 
 Hours uses icons from the Silk icon set, under CC-Attribution terms:
 http://www.famfamfam.com/lab/icons/silk/
