@@ -26,11 +26,11 @@ Partial Class frmMain
 		Dim ColumnHeader1 As System.Windows.Forms.ColumnHeader
 		Dim ColumnHeader3 As System.Windows.Forms.ColumnHeader
 		Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
-		Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("First Section", 13)
-		Dim ListViewItem2 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Second Section", 13)
-		Dim ListViewItem3 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Third Section", 13)
-		Dim ListViewItem4 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Conclusion", 13)
-		Dim ListViewItem5 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Intro", 13)
+		Dim ListViewItem6 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("First Section", 13)
+		Dim ListViewItem7 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Second Section", 13)
+		Dim ListViewItem8 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Third Section", 13)
+		Dim ListViewItem9 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Conclusion", 13)
+		Dim ListViewItem10 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Intro", 13)
 		Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
 		Me.btnPause = New System.Windows.Forms.Button()
 		Me.btnStart = New System.Windows.Forms.Button()
@@ -149,13 +149,14 @@ Partial Class frmMain
 		'
 		'txtTimeTotal
 		'
-		Me.txtTimeTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+		Me.txtTimeTotal.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.txtTimeTotal.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.txtTimeTotal.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.txtTimeTotal.Location = New System.Drawing.Point(4, 438)
 		Me.txtTimeTotal.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
 		Me.txtTimeTotal.Name = "txtTimeTotal"
-		Me.txtTimeTotal.Size = New System.Drawing.Size(205, 20)
+		Me.txtTimeTotal.Size = New System.Drawing.Size(204, 20)
 		Me.txtTimeTotal.TabIndex = 3
 		Me.txtTimeTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
 		'
@@ -518,7 +519,7 @@ Partial Class frmMain
 		Me.Button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
 		Me.Button2.Location = New System.Drawing.Point(104, 54)
 		Me.Button2.Name = "Button2"
-		Me.Button2.Size = New System.Drawing.Size(94, 23)
+		Me.Button2.Size = New System.Drawing.Size(94, 27)
 		Me.Button2.TabIndex = 61
 		Me.Button2.Text = "Recent"
 		Me.Button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -530,7 +531,7 @@ Partial Class frmMain
 		Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
 		Me.Button1.Location = New System.Drawing.Point(3, 25)
 		Me.Button1.Name = "Button1"
-		Me.Button1.Size = New System.Drawing.Size(95, 23)
+		Me.Button1.Size = New System.Drawing.Size(95, 27)
 		Me.Button1.TabIndex = 60
 		Me.Button1.Text = "Group"
 		Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -623,17 +624,18 @@ Partial Class frmMain
 		'
 		'ListView1
 		'
-		Me.ListView1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.ListView1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {ColumnHeader3, Me.ColumnHeader4})
 		Me.ListView1.ContextMenuStrip = Me.ContextMenuStrip1
 		Me.ListView1.HideSelection = False
-		Me.ListView1.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1, ListViewItem2, ListViewItem3, ListViewItem4, ListViewItem5})
+		Me.ListView1.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem6, ListViewItem7, ListViewItem8, ListViewItem9, ListViewItem10})
 		Me.ListView1.LargeImageList = Me.ImageList1
 		Me.ListView1.Location = New System.Drawing.Point(213, 122)
 		Me.ListView1.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
 		Me.ListView1.Name = "ListView1"
 		Me.ListView1.ShowItemToolTips = True
-		Me.ListView1.Size = New System.Drawing.Size(166, 336)
+		Me.ListView1.Size = New System.Drawing.Size(166, 339)
 		Me.ListView1.SmallImageList = Me.ImageList1
 		Me.ListView1.TabIndex = 48
 		Me.ListView1.TileSize = New System.Drawing.Size(150, 30)
@@ -661,7 +663,7 @@ Partial Class frmMain
 		Me.btnRename.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
 		Me.btnRename.Location = New System.Drawing.Point(104, 25)
 		Me.btnRename.Name = "btnRename"
-		Me.btnRename.Size = New System.Drawing.Size(95, 23)
+		Me.btnRename.Size = New System.Drawing.Size(95, 27)
 		Me.btnRename.TabIndex = 46
 		Me.btnRename.Text = "Rename"
 		Me.btnRename.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -673,7 +675,7 @@ Partial Class frmMain
 		Me.btnTarget.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
 		Me.btnTarget.Location = New System.Drawing.Point(4, 54)
 		Me.btnTarget.Name = "btnTarget"
-		Me.btnTarget.Size = New System.Drawing.Size(94, 23)
+		Me.btnTarget.Size = New System.Drawing.Size(94, 27)
 		Me.btnTarget.TabIndex = 45
 		Me.btnTarget.Text = "Target"
 		Me.btnTarget.TextAlign = System.Drawing.ContentAlignment.MiddleRight
