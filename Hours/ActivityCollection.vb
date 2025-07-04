@@ -18,6 +18,4 @@
     Sub Add(ByVal n As Activity)
         Activities.Add(n)
     End Sub
-
-
 End Class

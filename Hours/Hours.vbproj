@@ -84,53 +84,17 @@
     <Compile Include="Activity.vb" />
     <Compile Include="ActivityCollection.vb" />
     <Compile Include="Attachment.vb" />
-    <Compile Include="frmAttachment.Designer.vb">
-      <DependentUpon>frmAttachment.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmAttachment.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmWipFeatures.Designer.vb">
-      <DependentUpon>frmWipFeatures.vb</DependentUpon>
-    </Compile>
-    <None Include="frmWipFeatures.vb">
-      <SubType>Form</SubType>
-    </None>
-    <Compile Include="frmWipActivity.Designer.vb">
-      <DependentUpon>frmWipActivity.vb</DependentUpon>
-    </Compile>
-    <None Include="frmWipActivity.vb">
-      <SubType>Form</SubType>
-    </None>
-    <Compile Include="frmWipDayMeter.Designer.vb">
-      <DependentUpon>frmWipDayMeter.vb</DependentUpon>
-    </Compile>
-    <None Include="frmWipDayMeter.vb">
-      <SubType>Form</SubType>
-    </None>
     <Compile Include="frmDuration.Designer.vb">
       <DependentUpon>frmDuration.vb</DependentUpon>
     </Compile>
     <Compile Include="frmDuration.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmWipKeyboardHints.Designer.vb">
-      <DependentUpon>frmWipKeyboardHints.vb</DependentUpon>
-    </Compile>
-    <None Include="frmWipKeyboardHints.vb">
-      <SubType>Form</SubType>
-    </None>
     <Compile Include="frmMain.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMain.Designer.vb">
       <DependentUpon>frmMain.vb</DependentUpon>
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmMeter.Designer.vb">
-      <DependentUpon>frmMeter.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmMeter.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmSession.Designer.vb">
@@ -155,33 +119,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Routine.vb" />
     <Compile Include="Util.vb" />
     <Compile Include="Session.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="frmAttachment.resx">
-      <DependentUpon>frmAttachment.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmWipFeatures.resx">
-      <DependentUpon>frmWipFeatures.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmWipActivity.resx">
-      <DependentUpon>frmWipActivity.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmWipDayMeter.resx">
-      <DependentUpon>frmWipDayMeter.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmDuration.resx">
       <DependentUpon>frmDuration.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmWipKeyboardHints.resx">
-      <DependentUpon>frmWipKeyboardHints.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmMeter.resx">
-      <DependentUpon>frmMeter.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSession.resx">
       <DependentUpon>frmSession.vb</DependentUpon>
@@ -207,7 +154,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="brick.ico" />
-    <Content Include="README.txt" />
     <None Include="README.md" />
     <None Include="Resources\hourglass.png" />
     <None Include="Resources\hourglass_go.png" />
