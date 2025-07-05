@@ -119,11 +119,9 @@
 
         Me.Text = act.Name & " - Hours"
 
-        Dim Hicon As IntPtr = My.Resources.hourglass.GetHicon()
-        Dim myNewIcon As Icon = Icon.FromHandle(Hicon)
-        Me.Icon = myNewIcon
-
-
+        'Dim Hicon As IntPtr = My.Resources.hourglass.GetHicon()
+        'Dim myNewIcon As Icon = Icon.FromHandle(Hicon)
+        'Me.Icon = myNewIcon
     End Sub
 
     Private Sub addProject(ByVal name As String)
