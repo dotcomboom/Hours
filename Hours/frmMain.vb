@@ -100,7 +100,7 @@
         act = timingActivity
         loadActivityUX()
 
-        Me.Text = "Hours"
+        Me.Text = Application.ProductName
         Me.Icon = My.Resources.brick
 
         SaveData()
@@ -117,7 +117,7 @@
         picRecording.Visible = True
         'ProgressBar1.Visible = True
 
-        Me.Text = act.Name & " - Hours"
+        Me.Text = act.Name & " - " & Application.ProductName
 
         'Dim Hicon As IntPtr = My.Resources.hourglass.GetHicon()
         'Dim myNewIcon As Icon = Icon.FromHandle(Hicon)
