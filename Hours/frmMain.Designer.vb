@@ -154,7 +154,7 @@ Partial Class frmMain
 		Me.txtTimeTotal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
 		Me.txtTimeTotal.Enabled = False
 		Me.txtTimeTotal.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.txtTimeTotal.Location = New System.Drawing.Point(314, 326)
+		Me.txtTimeTotal.Location = New System.Drawing.Point(314, 406)
 		Me.txtTimeTotal.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
 		Me.txtTimeTotal.Name = "txtTimeTotal"
 		Me.txtTimeTotal.Size = New System.Drawing.Size(92, 20)
@@ -180,7 +180,7 @@ Partial Class frmMain
 		Me.btnAddProject.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
 		Me.btnAddProject.Image = CType(resources.GetObject("btnAddProject.Image"), System.Drawing.Image)
 		Me.btnAddProject.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-		Me.btnAddProject.Location = New System.Drawing.Point(13, 310)
+		Me.btnAddProject.Location = New System.Drawing.Point(13, 390)
 		Me.btnAddProject.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
 		Me.btnAddProject.Name = "btnAddProject"
 		Me.btnAddProject.Padding = New System.Windows.Forms.Padding(1, 0, 4, 0)
@@ -222,7 +222,7 @@ Partial Class frmMain
 		Me.lstSessions.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
 		Me.lstSessions.Name = "lstSessions"
 		Me.lstSessions.ShowItemToolTips = True
-		Me.lstSessions.Size = New System.Drawing.Size(231, 218)
+		Me.lstSessions.Size = New System.Drawing.Size(231, 298)
 		Me.lstSessions.SmallImageList = Me.ImageList1
 		Me.lstSessions.TabIndex = 10
 		Me.lstSessions.TileSize = New System.Drawing.Size(200, 30)
@@ -315,7 +315,7 @@ Partial Class frmMain
 		Me.Panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
 		Me.Panel2.Controls.Add(Me.btnRetrySave)
 		Me.Panel2.Controls.Add(Me.picSaveError)
-		Me.Panel2.Location = New System.Drawing.Point(13, 284)
+		Me.Panel2.Location = New System.Drawing.Point(13, 364)
 		Me.Panel2.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
 		Me.Panel2.Name = "Panel2"
 		Me.Panel2.Size = New System.Drawing.Size(95, 20)
@@ -404,9 +404,9 @@ Partial Class frmMain
 		'
 		'splitProjects.Panel1
 		'
-		Me.splitProjects.Panel1.Controls.Add(Me.lstProjects)
+		Me.splitProjects.Panel1.Controls.Add(Me.Panel1)
 		Me.splitProjects.Panel2Collapsed = True
-		Me.splitProjects.Size = New System.Drawing.Size(152, 297)
+		Me.splitProjects.Size = New System.Drawing.Size(235, 377)
 		Me.splitProjects.SplitterDistance = 213
 		Me.splitProjects.SplitterWidth = 5
 		Me.splitProjects.TabIndex = 43
@@ -425,7 +425,7 @@ Partial Class frmMain
 		Me.lstProjects.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
 		Me.lstProjects.MultiSelect = False
 		Me.lstProjects.Name = "lstProjects"
-		Me.lstProjects.Size = New System.Drawing.Size(152, 297)
+		Me.lstProjects.Size = New System.Drawing.Size(151, 377)
 		Me.lstProjects.Sorting = System.Windows.Forms.SortOrder.Ascending
 		Me.lstProjects.TabIndex = 2
 		Me.lstProjects.TileSize = New System.Drawing.Size(268, 20)
@@ -454,9 +454,9 @@ Partial Class frmMain
 		'
 		'splitMain.Panel2
 		'
-		Me.splitMain.Panel2.Controls.Add(Me.Panel1)
-		Me.splitMain.Size = New System.Drawing.Size(391, 297)
-		Me.splitMain.SplitterDistance = 152
+		Me.splitMain.Panel2.Controls.Add(Me.lstProjects)
+		Me.splitMain.Size = New System.Drawing.Size(391, 377)
+		Me.splitMain.SplitterDistance = 235
 		Me.splitMain.SplitterWidth = 5
 		Me.splitMain.TabIndex = 44
 		'
@@ -469,7 +469,7 @@ Partial Class frmMain
 		Me.Panel1.Location = New System.Drawing.Point(0, 0)
 		Me.Panel1.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
 		Me.Panel1.Name = "Panel1"
-		Me.Panel1.Size = New System.Drawing.Size(234, 297)
+		Me.Panel1.Size = New System.Drawing.Size(235, 377)
 		Me.Panel1.TabIndex = 0
 		'
 		'Panel3
@@ -489,7 +489,7 @@ Partial Class frmMain
 		'
 		Me.lblTimeTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.lblTimeTotal.ForeColor = System.Drawing.SystemColors.GrayText
-		Me.lblTimeTotal.Location = New System.Drawing.Point(311, 308)
+		Me.lblTimeTotal.Location = New System.Drawing.Point(311, 388)
 		Me.lblTimeTotal.Name = "lblTimeTotal"
 		Me.lblTimeTotal.Size = New System.Drawing.Size(92, 15)
 		Me.lblTimeTotal.TabIndex = 66
@@ -500,7 +500,7 @@ Partial Class frmMain
 		'
 		Me.lblTimeToday.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.lblTimeToday.ForeColor = System.Drawing.SystemColors.GrayText
-		Me.lblTimeToday.Location = New System.Drawing.Point(207, 308)
+		Me.lblTimeToday.Location = New System.Drawing.Point(207, 388)
 		Me.lblTimeToday.Name = "lblTimeToday"
 		Me.lblTimeToday.Size = New System.Drawing.Size(92, 15)
 		Me.lblTimeToday.TabIndex = 65
@@ -513,7 +513,7 @@ Partial Class frmMain
 		Me.txtTimeToday.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
 		Me.txtTimeToday.Enabled = False
 		Me.txtTimeToday.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.txtTimeToday.Location = New System.Drawing.Point(210, 326)
+		Me.txtTimeToday.Location = New System.Drawing.Point(210, 406)
 		Me.txtTimeToday.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
 		Me.txtTimeToday.Name = "txtTimeToday"
 		Me.txtTimeToday.Size = New System.Drawing.Size(92, 20)
@@ -641,7 +641,7 @@ Partial Class frmMain
 		'
 		Me.Button3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
 		Me.Button3.Image = CType(resources.GetObject("Button3.Image"), System.Drawing.Image)
-		Me.Button3.Location = New System.Drawing.Point(126, 310)
+		Me.Button3.Location = New System.Drawing.Point(126, 390)
 		Me.Button3.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
 		Me.Button3.Name = "Button3"
 		Me.Button3.Padding = New System.Windows.Forms.Padding(1, 0, 4, 0)
@@ -674,7 +674,7 @@ Partial Class frmMain
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
 		Me.BackColor = System.Drawing.SystemColors.Control
-		Me.ClientSize = New System.Drawing.Size(414, 352)
+		Me.ClientSize = New System.Drawing.Size(414, 432)
 		Me.Controls.Add(Me.Panel2)
 		Me.Controls.Add(Me.txtTimeTotal)
 		Me.Controls.Add(Me.Button3)
