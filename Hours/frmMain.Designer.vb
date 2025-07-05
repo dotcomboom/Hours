@@ -150,7 +150,7 @@ Partial Class frmMain
 		'
 		'txtTimeTotal
 		'
-		Me.txtTimeTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.txtTimeTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
 		Me.txtTimeTotal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
 		Me.txtTimeTotal.Enabled = False
 		Me.txtTimeTotal.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -486,7 +486,7 @@ Partial Class frmMain
 		'
 		'lblTimeTotal
 		'
-		Me.lblTimeTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.lblTimeTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
 		Me.lblTimeTotal.ForeColor = System.Drawing.SystemColors.GrayText
 		Me.lblTimeTotal.Location = New System.Drawing.Point(114, 388)
 		Me.lblTimeTotal.Name = "lblTimeTotal"
@@ -497,7 +497,7 @@ Partial Class frmMain
 		'
 		'lblTimeToday
 		'
-		Me.lblTimeToday.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.lblTimeToday.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
 		Me.lblTimeToday.ForeColor = System.Drawing.SystemColors.GrayText
 		Me.lblTimeToday.Location = New System.Drawing.Point(10, 387)
 		Me.lblTimeToday.Name = "lblTimeToday"
@@ -508,7 +508,7 @@ Partial Class frmMain
 		'
 		'txtTimeToday
 		'
-		Me.txtTimeToday.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.txtTimeToday.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
 		Me.txtTimeToday.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
 		Me.txtTimeToday.Enabled = False
 		Me.txtTimeToday.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
