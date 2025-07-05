@@ -144,10 +144,10 @@
                 'ListBox1.SelectedIndex = ListBox1.Items.Count - 1
             End If
 
-            Dim s As New Session(Now, Now)
-            s.Comment = "Created the new project"
-            s.Rating = 3
-            act.Events.Add(s)
+            'Dim s As New Session(Now, Now)
+            's.Comment = "Created the new project"
+            's.Rating = 3
+            'act.Events.Add(s)
 
             loadActivityUX()
 
