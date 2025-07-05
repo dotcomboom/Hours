@@ -251,9 +251,14 @@
         lstSessions.Sort()
 
         If timingActivity IsNot Nothing And timingActivity IsNot act Then
-            picRecording.Image = My.Resources.hourglass_go
-            lblTimingActivity.Text = timingActivity.Name
-            lblTimingActivity.Show()
+            If timingActivity.beingTimed Then
+                picRecording.Image = My.Resources.hourglass_go
+                lblTimingActivity.Text = timingActivity.Name
+                lblTimingActivity.Show()
+            Else
+                picRecording.Image = My.Resources.hourglass
+                lblTimingActivity.Hide()
+            End If
         Else
             picRecording.Image = My.Resources.hourglass
             lblTimingActivity.Hide()
@@ -344,7 +349,7 @@
         lstProjects.EndUpdate()
     End Sub
 
-    Private Sub LabellblActiveProject_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRename.Click, lblActiveProject.Click
+    Private Sub LabellblActiveProject_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblActiveProject.Click
         If act IsNot Nothing Then
 
             Dim newName As String = InputBox("Enter the name for the activity.", "Set Activity Name", lblActiveProject.Text)
@@ -370,7 +375,7 @@
         End If
     End Sub
 
-    Private Sub LoadData() Handles btnLoadData.Click
+    Private Sub LoadData()
         'TODO: sync activities so that it persists current session
         Dim sl As New Filesystem
         'Try
@@ -409,7 +414,7 @@
         loadActivityUX()
     End Sub
 
-    Private Sub SaveData() Handles btnSave.Click, btnRetrySave.LinkClicked
+    Private Sub SaveData() Handles btnRetrySave.LinkClicked
         FileSystemWatcher1.EnableRaisingEvents = False
         Try
             Dim sl As New Filesystem
@@ -488,7 +493,7 @@
                 s = CType(i.Tag, Session)
                 d = d.Add(s.TimeSpan)
             Next
-            lblTimeToday.Text = "Time selected"
+            lblTimeToday.Text = "Selected time"
             txtTimeToday.Text = d.ToString("hh\:mm\:ss")
         Else
             lblTimeToday.Text = "Time today"
@@ -537,7 +542,7 @@
     End Sub
 
     Private Sub CategorizeToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CategorizeToolStripMenuItem.Click
-        
+
     End Sub
 
     Private Sub btnCategoryView_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -670,7 +675,7 @@
         'todo
     End Sub
 
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click, lblGroup.Click, CategorizeToolStripMenuItem.Click
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles lblGroup.Click, CategorizeToolStripMenuItem.Click
         'If lstProjects.SelectedItems.Count > 0 Then
         '    Dim activ As Activity = CType(lstProjects.SelectedItems(0).Tag, Activity)
         Dim activ As Activity = act
