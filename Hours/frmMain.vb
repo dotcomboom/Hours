@@ -166,8 +166,13 @@
         End If
         If activities.Count > 0 Then
             'txtTimeToday.Text = act.getTotalOnDay(Date.Today).ToString
-            txtTimeTotal.Text = "Total time: " & act.getTotalTime().ToString("hh\:mm")
+            txtTimeTotal.Text = act.getTotalTime().ToString("hh\:mm\:ss")
             lblActiveProject.Text = act.Name
+            lblGroup.Text = act.Category
+
+            If Not act.Category.Length > 0 Then
+                lblGroup.Text = "Default"
+            End If
 
             groups.Clear()
 
@@ -194,7 +199,7 @@
 
                 Dim n As New ListViewItem
                 'n.Text = s.StartTime.ToString
-                n.Text = s.StartTime.ToString("t") & ": " & Math.Round(s.TimeSpan.TotalMinutes) & " minutes"
+                n.Text = s.StartTime.ToString("t") & ": " & Math.Round(s.TimeSpan.TotalMinutes) & " min"
                 n.Tag = s
                 n.ImageIndex = 0
 
@@ -611,19 +616,21 @@
         addProject("New Project")
     End Sub
 
-    Private Sub Label3_MouseEnter(sender As Object, e As EventArgs) Handles Label3.MouseEnter
-        Label3.ForeColor = SystemColors.ControlText
-    End Sub
+    'Private Sub Label3_MouseEnter(sender As Object, e As EventArgs)
+    '    Label3.ForeColor = SystemColors.ControlText
+    'End Sub
 
-    Private Sub Label3_MouseLeave(sender As Object, e As EventArgs) Handles Label3.MouseLeave
-        Label3.ForeColor = SystemColors.ControlDark
-    End Sub
+    'Private Sub Label3_MouseLeave(sender As Object, e As EventArgs)
+    '    Label3.ForeColor = SystemColors.ControlDark
+    'End Sub
 
     Private Sub lstProjects_AfterLabelEdit_1(sender As Object, e As LabelEditEventArgs) Handles lstProjects.AfterLabelEdit
-        Dim obj As Activity = CType(lstProjects.SelectedItems(0).Tag, Activity)
-        obj.Name = e.Label
-        If obj.Equals(act) Then
-            lblActiveProject.Text = act.Name
+        If Not (e.CancelEdit Or e.Label = "") Then
+            Dim obj As Activity = CType(lstProjects.SelectedItems(0).Tag, Activity)
+            obj.Name = e.Label
+            If obj.Equals(act) Then
+                lblActiveProject.Text = act.Name
+            End If
         End If
     End Sub
 
@@ -638,23 +645,15 @@
         Dim activ As Activity = act
         Dim s As String = InputBox("What category (this is case sensitive)?", "Set category for " & activ.Name, activ.Category)
         If s <> "" Then
-                activ.Category = s
-                lstSessions.ShowGroups = True
-                loadList()
-            End If
-            SaveData()
+            activ.Category = s
+            lstSessions.ShowGroups = True
+            loadList()
+        End If
+        SaveData()
         'End If
     End Sub
 
-    Private Sub SaveData(sender As Object, e As EventArgs) Handles btnSave.Click, btnRetrySave.LinkClicked
-
-    End Sub
-
-    Private Sub btnTarget_Click(sender As Object, e As EventArgs) Handles btnTarget.Click
-
-    End Sub
-
-    Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Panel3_Paint(sender As Object, e As PaintEventArgs) Handles Panel3.Paint
 
     End Sub
 End Class
