@@ -42,6 +42,7 @@ Partial Class frmMain
 		Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
 		Me.DurationViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.UseGroupsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+		Me.EarliestFirstToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
 		Me.DiscardSessionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.picRecording = New System.Windows.Forms.PictureBox()
@@ -67,6 +68,10 @@ Partial Class frmMain
 		Me.splitMain = New System.Windows.Forms.SplitContainer()
 		Me.Panel1 = New System.Windows.Forms.Panel()
 		Me.Panel3 = New System.Windows.Forms.Panel()
+		Me.lblTimeTotal = New System.Windows.Forms.Label()
+		Me.lblTimeToday = New System.Windows.Forms.Label()
+		Me.txtTimeToday = New System.Windows.Forms.Label()
+		Me.lblTimingActivity = New System.Windows.Forms.Label()
 		Me.lblGroup = New System.Windows.Forms.Label()
 		Me.btnRename = New System.Windows.Forms.Button()
 		Me.Button1 = New System.Windows.Forms.Button()
@@ -81,7 +86,6 @@ Partial Class frmMain
 		Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
 		Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
 		Me.Button3 = New System.Windows.Forms.Button()
-		Me.EarliestFirstToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.ContextMenuStrip1.SuspendLayout()
@@ -152,7 +156,7 @@ Partial Class frmMain
 		Me.txtTimeTotal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
 		Me.txtTimeTotal.Enabled = False
 		Me.txtTimeTotal.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.txtTimeTotal.Location = New System.Drawing.Point(245, 378)
+		Me.txtTimeTotal.Location = New System.Drawing.Point(245, 373)
 		Me.txtTimeTotal.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
 		Me.txtTimeTotal.Name = "txtTimeTotal"
 		Me.txtTimeTotal.Size = New System.Drawing.Size(92, 20)
@@ -229,14 +233,14 @@ Partial Class frmMain
 		'
 		Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DurationViewToolStripMenuItem, Me.UseGroupsToolStripMenuItem, Me.EarliestFirstToolStripMenuItem, Me.ToolStripSeparator2, Me.DiscardSessionToolStripMenuItem})
 		Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-		Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 120)
+		Me.ContextMenuStrip1.Size = New System.Drawing.Size(176, 98)
 		'
 		'DurationViewToolStripMenuItem
 		'
 		Me.DurationViewToolStripMenuItem.CheckOnClick = True
 		Me.DurationViewToolStripMenuItem.Image = CType(resources.GetObject("DurationViewToolStripMenuItem.Image"), System.Drawing.Image)
 		Me.DurationViewToolStripMenuItem.Name = "DurationViewToolStripMenuItem"
-		Me.DurationViewToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+		Me.DurationViewToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
 		Me.DurationViewToolStripMenuItem.Text = "Duration only"
 		'
 		'UseGroupsToolStripMenuItem
@@ -244,20 +248,28 @@ Partial Class frmMain
 		Me.UseGroupsToolStripMenuItem.CheckOnClick = True
 		Me.UseGroupsToolStripMenuItem.Image = CType(resources.GetObject("UseGroupsToolStripMenuItem.Image"), System.Drawing.Image)
 		Me.UseGroupsToolStripMenuItem.Name = "UseGroupsToolStripMenuItem"
-		Me.UseGroupsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+		Me.UseGroupsToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
 		Me.UseGroupsToolStripMenuItem.Text = "Group by date"
+		'
+		'EarliestFirstToolStripMenuItem
+		'
+		Me.EarliestFirstToolStripMenuItem.CheckOnClick = True
+		Me.EarliestFirstToolStripMenuItem.Image = CType(resources.GetObject("EarliestFirstToolStripMenuItem.Image"), System.Drawing.Image)
+		Me.EarliestFirstToolStripMenuItem.Name = "EarliestFirstToolStripMenuItem"
+		Me.EarliestFirstToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+		Me.EarliestFirstToolStripMenuItem.Text = "Earlier sessions first"
 		'
 		'ToolStripSeparator2
 		'
 		Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-		Me.ToolStripSeparator2.Size = New System.Drawing.Size(177, 6)
+		Me.ToolStripSeparator2.Size = New System.Drawing.Size(172, 6)
 		Me.ToolStripSeparator2.Visible = False
 		'
 		'DiscardSessionToolStripMenuItem
 		'
 		Me.DiscardSessionToolStripMenuItem.Image = CType(resources.GetObject("DiscardSessionToolStripMenuItem.Image"), System.Drawing.Image)
 		Me.DiscardSessionToolStripMenuItem.Name = "DiscardSessionToolStripMenuItem"
-		Me.DiscardSessionToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+		Me.DiscardSessionToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
 		Me.DiscardSessionToolStripMenuItem.Text = "Delete session"
 		Me.DiscardSessionToolStripMenuItem.Visible = False
 		'
@@ -503,6 +515,10 @@ Partial Class frmMain
 		'
 		Me.Panel3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
 			Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+		Me.Panel3.Controls.Add(Me.lblTimeTotal)
+		Me.Panel3.Controls.Add(Me.lblTimeToday)
+		Me.Panel3.Controls.Add(Me.txtTimeToday)
+		Me.Panel3.Controls.Add(Me.lblTimingActivity)
 		Me.Panel3.Controls.Add(Me.lblGroup)
 		Me.Panel3.Controls.Add(Me.picRecording)
 		Me.Panel3.Controls.Add(Me.btnRename)
@@ -516,6 +532,50 @@ Partial Class frmMain
 		Me.Panel3.Name = "Panel3"
 		Me.Panel3.Size = New System.Drawing.Size(349, 461)
 		Me.Panel3.TabIndex = 63
+		'
+		'lblTimeTotal
+		'
+		Me.lblTimeTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.lblTimeTotal.AutoSize = True
+		Me.lblTimeTotal.ForeColor = System.Drawing.SystemColors.GrayText
+		Me.lblTimeTotal.Location = New System.Drawing.Point(242, 355)
+		Me.lblTimeTotal.Name = "lblTimeTotal"
+		Me.lblTimeTotal.Size = New System.Drawing.Size(60, 15)
+		Me.lblTimeTotal.TabIndex = 66
+		Me.lblTimeTotal.Text = "Time total"
+		'
+		'lblTimeToday
+		'
+		Me.lblTimeToday.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.lblTimeToday.AutoSize = True
+		Me.lblTimeToday.ForeColor = System.Drawing.SystemColors.GrayText
+		Me.lblTimeToday.Location = New System.Drawing.Point(242, 309)
+		Me.lblTimeToday.Name = "lblTimeToday"
+		Me.lblTimeToday.Size = New System.Drawing.Size(66, 15)
+		Me.lblTimeToday.TabIndex = 65
+		Me.lblTimeToday.Text = "Time today"
+		'
+		'txtTimeToday
+		'
+		Me.txtTimeToday.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.txtTimeToday.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+		Me.txtTimeToday.Enabled = False
+		Me.txtTimeToday.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.txtTimeToday.Location = New System.Drawing.Point(245, 327)
+		Me.txtTimeToday.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+		Me.txtTimeToday.Name = "txtTimeToday"
+		Me.txtTimeToday.Size = New System.Drawing.Size(92, 20)
+		Me.txtTimeToday.TabIndex = 64
+		Me.txtTimeToday.Text = "00:00:00"
+		Me.txtTimeToday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+		'
+		'lblTimingActivity
+		'
+		Me.lblTimingActivity.AutoSize = True
+		Me.lblTimingActivity.Location = New System.Drawing.Point(242, 127)
+		Me.lblTimingActivity.Name = "lblTimingActivity"
+		Me.lblTimingActivity.Size = New System.Drawing.Size(0, 15)
+		Me.lblTimingActivity.TabIndex = 63
 		'
 		'lblGroup
 		'
@@ -664,14 +724,6 @@ Partial Class frmMain
 		Me.Button3.UseVisualStyleBackColor = True
 		Me.Button3.Visible = False
 		'
-		'EarliestFirstToolStripMenuItem
-		'
-		Me.EarliestFirstToolStripMenuItem.CheckOnClick = True
-		Me.EarliestFirstToolStripMenuItem.Image = CType(resources.GetObject("EarliestFirstToolStripMenuItem.Image"), System.Drawing.Image)
-		Me.EarliestFirstToolStripMenuItem.Name = "EarliestFirstToolStripMenuItem"
-		Me.EarliestFirstToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-		Me.EarliestFirstToolStripMenuItem.Text = "Earlier sessions first"
-		'
 		'frmMain
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -767,4 +819,8 @@ Partial Class frmMain
 	Friend WithEvents lblGroup As Label
 	Friend WithEvents Panel3 As Panel
 	Friend WithEvents EarliestFirstToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents lblTimingActivity As Label
+	Friend WithEvents txtTimeToday As Label
+	Friend WithEvents lblTimeTotal As Label
+	Friend WithEvents lblTimeToday As Label
 End Class
