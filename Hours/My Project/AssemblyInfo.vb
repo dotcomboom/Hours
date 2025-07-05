@@ -8,10 +8,10 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Hours")> 
+<Assembly: AssemblyTitle("Blocks")>
 <Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("dotcomboom")> 
-<Assembly: AssemblyProduct("Hours")>
+<Assembly: AssemblyCompany("dotcomboom")>
+<Assembly: AssemblyProduct("Blocks")>
 <Assembly: AssemblyCopyright("Copyright © dotcomboom 2025")>
 <Assembly: AssemblyTrademark("")> 
 

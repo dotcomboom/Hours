@@ -19,7 +19,7 @@
         If act Is Nothing Then
             'Panel1.BringToFront()
             'Panel1.Show()
-            lblActiveProject.Text = "Welcome to Hours!"
+            lblActiveProject.Text = "Welcome to " & Application.ProductName & "!"
         Else
             'Panel1.Hide()
             lstProjects.SelectedIndices.Clear()
@@ -194,7 +194,7 @@
 
                 Dim n As New ListViewItem
                 'n.Text = s.StartTime.ToString
-                n.Text = s.StartTime.ToString("t") & ": " & s.TimeSpan.Minutes & " minutes"
+                n.Text = s.StartTime.ToString("t") & ": " & Math.Round(s.TimeSpan.TotalMinutes) & " minutes"
                 n.Tag = s
                 n.ImageIndex = 0
 
@@ -647,6 +647,14 @@
     End Sub
 
     Private Sub SaveData(sender As Object, e As EventArgs) Handles btnSave.Click, btnRetrySave.LinkClicked
+
+    End Sub
+
+    Private Sub btnTarget_Click(sender As Object, e As EventArgs) Handles btnTarget.Click
+
+    End Sub
+
+    Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles Button2.Click
 
     End Sub
 End Class

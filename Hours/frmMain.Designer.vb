@@ -83,6 +83,7 @@ Partial Class frmMain
 		Me.btnTarget = New System.Windows.Forms.Button()
 		Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
 		Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
+		Me.Button3 = New System.Windows.Forms.Button()
 		ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.ContextMenuStrip1.SuspendLayout()
@@ -125,7 +126,7 @@ Partial Class frmMain
 		Me.btnPause.Enabled = False
 		Me.btnPause.Image = CType(resources.GetObject("btnPause.Image"), System.Drawing.Image)
 		Me.btnPause.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-		Me.btnPause.Location = New System.Drawing.Point(79, 117)
+		Me.btnPause.Location = New System.Drawing.Point(79, 25)
 		Me.btnPause.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
 		Me.btnPause.Name = "btnPause"
 		Me.btnPause.Size = New System.Drawing.Size(67, 27)
@@ -138,7 +139,7 @@ Partial Class frmMain
 		'
 		Me.btnStart.Image = CType(resources.GetObject("btnStart.Image"), System.Drawing.Image)
 		Me.btnStart.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-		Me.btnStart.Location = New System.Drawing.Point(4, 117)
+		Me.btnStart.Location = New System.Drawing.Point(4, 25)
 		Me.btnStart.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
 		Me.btnStart.Name = "btnStart"
 		Me.btnStart.Size = New System.Drawing.Size(67, 27)
@@ -149,11 +150,10 @@ Partial Class frmMain
 		'
 		'txtTimeTotal
 		'
-		Me.txtTimeTotal.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.txtTimeTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
 		Me.txtTimeTotal.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.txtTimeTotal.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.txtTimeTotal.Location = New System.Drawing.Point(4, 438)
+		Me.txtTimeTotal.Location = New System.Drawing.Point(4, 372)
 		Me.txtTimeTotal.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
 		Me.txtTimeTotal.Name = "txtTimeTotal"
 		Me.txtTimeTotal.Size = New System.Drawing.Size(204, 20)
@@ -216,11 +216,11 @@ Partial Class frmMain
 		Me.lstSessions.ContextMenuStrip = Me.ContextMenuStrip1
 		Me.lstSessions.HideSelection = False
 		Me.lstSessions.LargeImageList = Me.ImageList1
-		Me.lstSessions.Location = New System.Drawing.Point(4, 150)
+		Me.lstSessions.Location = New System.Drawing.Point(4, 84)
 		Me.lstSessions.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
 		Me.lstSessions.Name = "lstSessions"
 		Me.lstSessions.ShowItemToolTips = True
-		Me.lstSessions.Size = New System.Drawing.Size(204, 285)
+		Me.lstSessions.Size = New System.Drawing.Size(375, 285)
 		Me.lstSessions.SmallImageList = Me.ImageList1
 		Me.lstSessions.TabIndex = 10
 		Me.lstSessions.TileSize = New System.Drawing.Size(150, 30)
@@ -266,7 +266,7 @@ Partial Class frmMain
 		'picRecording
 		'
 		Me.picRecording.Image = CType(resources.GetObject("picRecording.Image"), System.Drawing.Image)
-		Me.picRecording.Location = New System.Drawing.Point(154, 122)
+		Me.picRecording.Location = New System.Drawing.Point(153, 30)
 		Me.picRecording.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
 		Me.picRecording.Name = "picRecording"
 		Me.picRecording.Size = New System.Drawing.Size(16, 16)
@@ -383,6 +383,7 @@ Partial Class frmMain
 		Me.ProgressBar1.Size = New System.Drawing.Size(142, 23)
 		Me.ProgressBar1.TabIndex = 53
 		Me.ToolTip1.SetToolTip(Me.ProgressBar1, "Total progress")
+		Me.ProgressBar1.Visible = False
 		'
 		'ProgressBar2
 		'
@@ -392,6 +393,7 @@ Partial Class frmMain
 		Me.ProgressBar2.Size = New System.Drawing.Size(142, 23)
 		Me.ProgressBar2.TabIndex = 54
 		Me.ToolTip1.SetToolTip(Me.ProgressBar2, "Component progress")
+		Me.ProgressBar2.Visible = False
 		'
 		'ProgressBar3
 		'
@@ -401,6 +403,7 @@ Partial Class frmMain
 		Me.ProgressBar3.Size = New System.Drawing.Size(89, 23)
 		Me.ProgressBar3.TabIndex = 55
 		Me.ToolTip1.SetToolTip(Me.ProgressBar3, "Target progress")
+		Me.ProgressBar3.Visible = False
 		'
 		'Timer1
 		'
@@ -482,8 +485,8 @@ Partial Class frmMain
 		'
 		'Panel1
 		'
+		Me.Panel1.Controls.Add(Me.picRecording)
 		Me.Panel1.Controls.Add(Me.Button2)
-		Me.Panel1.Controls.Add(Me.Button1)
 		Me.Panel1.Controls.Add(Me.Label4)
 		Me.Panel1.Controls.Add(Me.PictureBox5)
 		Me.Panel1.Controls.Add(Me.PictureBox4)
@@ -498,13 +501,13 @@ Partial Class frmMain
 		Me.Panel1.Controls.Add(Me.PictureBox1)
 		Me.Panel1.Controls.Add(Me.ListView1)
 		Me.Panel1.Controls.Add(Me.Label1)
-		Me.Panel1.Controls.Add(Me.btnRename)
 		Me.Panel1.Controls.Add(Me.btnTarget)
 		Me.Panel1.Controls.Add(Me.btnPause)
 		Me.Panel1.Controls.Add(Me.btnStart)
 		Me.Panel1.Controls.Add(Me.lblActiveProject)
 		Me.Panel1.Controls.Add(Me.lstSessions)
-		Me.Panel1.Controls.Add(Me.picRecording)
+		Me.Panel1.Controls.Add(Me.Button1)
+		Me.Panel1.Controls.Add(Me.btnRename)
 		Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
 		Me.Panel1.Location = New System.Drawing.Point(0, 0)
 		Me.Panel1.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
@@ -514,22 +517,24 @@ Partial Class frmMain
 		'
 		'Button2
 		'
-		Me.Button2.Enabled = False
+		Me.Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
 		Me.Button2.Image = CType(resources.GetObject("Button2.Image"), System.Drawing.Image)
 		Me.Button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-		Me.Button2.Location = New System.Drawing.Point(104, 54)
+		Me.Button2.Location = New System.Drawing.Point(103, 428)
 		Me.Button2.Name = "Button2"
 		Me.Button2.Size = New System.Drawing.Size(94, 27)
 		Me.Button2.TabIndex = 61
 		Me.Button2.Text = "Recent"
 		Me.Button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
 		Me.Button2.UseVisualStyleBackColor = True
+		Me.Button2.Visible = False
 		'
 		'Button1
 		'
+		Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
 		Me.Button1.Image = CType(resources.GetObject("Button1.Image"), System.Drawing.Image)
 		Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-		Me.Button1.Location = New System.Drawing.Point(3, 25)
+		Me.Button1.Location = New System.Drawing.Point(4, 395)
 		Me.Button1.Name = "Button1"
 		Me.Button1.Size = New System.Drawing.Size(95, 27)
 		Me.Button1.TabIndex = 60
@@ -546,6 +551,7 @@ Partial Class frmMain
 		Me.Label4.Size = New System.Drawing.Size(47, 15)
 		Me.Label4.TabIndex = 59
 		Me.Label4.Text = "Day 1/4"
+		Me.Label4.Visible = False
 		'
 		'PictureBox5
 		'
@@ -557,6 +563,7 @@ Partial Class frmMain
 		Me.PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
 		Me.PictureBox5.TabIndex = 58
 		Me.PictureBox5.TabStop = False
+		Me.PictureBox5.Visible = False
 		'
 		'PictureBox4
 		'
@@ -568,6 +575,7 @@ Partial Class frmMain
 		Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
 		Me.PictureBox4.TabIndex = 57
 		Me.PictureBox4.TabStop = False
+		Me.PictureBox4.Visible = False
 		'
 		'PictureBox3
 		'
@@ -579,12 +587,13 @@ Partial Class frmMain
 		Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
 		Me.PictureBox3.TabIndex = 56
 		Me.PictureBox3.TabStop = False
+		Me.PictureBox3.Visible = False
 		'
 		'Label2
 		'
 		Me.Label2.AutoSize = True
 		Me.Label2.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.Label2.Location = New System.Drawing.Point(26, 95)
+		Me.Label2.Location = New System.Drawing.Point(26, 62)
 		Me.Label2.Name = "Label2"
 		Me.Label2.Size = New System.Drawing.Size(55, 15)
 		Me.Label2.TabIndex = 49
@@ -593,7 +602,7 @@ Partial Class frmMain
 		'Label3
 		'
 		Me.Label3.ForeColor = System.Drawing.SystemColors.ControlDark
-		Me.Label3.Location = New System.Drawing.Point(79, 91)
+		Me.Label3.Location = New System.Drawing.Point(80, 58)
 		Me.Label3.Name = "Label3"
 		Me.Label3.Size = New System.Drawing.Size(90, 22)
 		Me.Label3.TabIndex = 52
@@ -604,7 +613,7 @@ Partial Class frmMain
 		'PictureBox2
 		'
 		Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
-		Me.PictureBox2.Location = New System.Drawing.Point(4, 94)
+		Me.PictureBox2.Location = New System.Drawing.Point(4, 61)
 		Me.PictureBox2.Name = "PictureBox2"
 		Me.PictureBox2.Size = New System.Drawing.Size(16, 16)
 		Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
@@ -621,6 +630,7 @@ Partial Class frmMain
 		Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
 		Me.PictureBox1.TabIndex = 50
 		Me.PictureBox1.TabStop = False
+		Me.PictureBox1.Visible = False
 		'
 		'ListView1
 		'
@@ -641,6 +651,7 @@ Partial Class frmMain
 		Me.ListView1.TileSize = New System.Drawing.Size(150, 30)
 		Me.ListView1.UseCompatibleStateImageBehavior = False
 		Me.ListView1.View = System.Windows.Forms.View.Tile
+		Me.ListView1.Visible = False
 		'
 		'ColumnHeader4
 		'
@@ -656,12 +667,14 @@ Partial Class frmMain
 		Me.Label1.Size = New System.Drawing.Size(37, 15)
 		Me.Label1.TabIndex = 47
 		Me.Label1.Text = "Goals"
+		Me.Label1.Visible = False
 		'
 		'btnRename
 		'
+		Me.btnRename.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
 		Me.btnRename.Image = CType(resources.GetObject("btnRename.Image"), System.Drawing.Image)
 		Me.btnRename.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-		Me.btnRename.Location = New System.Drawing.Point(104, 25)
+		Me.btnRename.Location = New System.Drawing.Point(4, 428)
 		Me.btnRename.Name = "btnRename"
 		Me.btnRename.Size = New System.Drawing.Size(95, 27)
 		Me.btnRename.TabIndex = 46
@@ -671,25 +684,44 @@ Partial Class frmMain
 		'
 		'btnTarget
 		'
+		Me.btnTarget.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
 		Me.btnTarget.Image = CType(resources.GetObject("btnTarget.Image"), System.Drawing.Image)
 		Me.btnTarget.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-		Me.btnTarget.Location = New System.Drawing.Point(4, 54)
+		Me.btnTarget.Location = New System.Drawing.Point(103, 395)
 		Me.btnTarget.Name = "btnTarget"
 		Me.btnTarget.Size = New System.Drawing.Size(94, 27)
 		Me.btnTarget.TabIndex = 45
 		Me.btnTarget.Text = "Target"
 		Me.btnTarget.TextAlign = System.Drawing.ContentAlignment.MiddleRight
 		Me.btnTarget.UseVisualStyleBackColor = True
+		Me.btnTarget.Visible = False
 		'
 		'Timer2
 		'
 		Me.Timer2.Interval = 1000
+		'
+		'Button3
+		'
+		Me.Button3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+		Me.Button3.Image = CType(resources.GetObject("Button3.Image"), System.Drawing.Image)
+		Me.Button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+		Me.Button3.Location = New System.Drawing.Point(126, 474)
+		Me.Button3.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+		Me.Button3.Name = "Button3"
+		Me.Button3.Padding = New System.Windows.Forms.Padding(1, 0, 4, 0)
+		Me.Button3.Size = New System.Drawing.Size(105, 30)
+		Me.Button3.TabIndex = 45
+		Me.Button3.Text = "Add tab"
+		Me.Button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+		Me.Button3.UseVisualStyleBackColor = True
+		Me.Button3.Visible = False
 		'
 		'frmMain
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
 		Me.ClientSize = New System.Drawing.Size(617, 516)
+		Me.Controls.Add(Me.Button3)
 		Me.Controls.Add(Me.splitMain)
 		Me.Controls.Add(Me.btnLoadData)
 		Me.Controls.Add(Me.btnSave)
@@ -778,4 +810,5 @@ Partial Class frmMain
 	Friend WithEvents Label4 As Label
 	Friend WithEvents Button1 As Button
 	Friend WithEvents Button2 As Button
+	Friend WithEvents Button3 As Button
 End Class
