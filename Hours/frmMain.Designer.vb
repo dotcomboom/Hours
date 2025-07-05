@@ -26,11 +26,11 @@ Partial Class frmMain
 		Dim ColumnHeader1 As System.Windows.Forms.ColumnHeader
 		Dim ColumnHeader3 As System.Windows.Forms.ColumnHeader
 		Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
-		Dim ListViewItem6 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("First Section", 13)
-		Dim ListViewItem7 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Second Section", 13)
-		Dim ListViewItem8 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Third Section", 13)
-		Dim ListViewItem9 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Conclusion", 13)
-		Dim ListViewItem10 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Intro", 13)
+		Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("First Section", 13)
+		Dim ListViewItem2 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Second Section", 13)
+		Dim ListViewItem3 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Third Section", 13)
+		Dim ListViewItem4 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Conclusion", 13)
+		Dim ListViewItem5 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Intro", 13)
 		Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
 		Me.btnPause = New System.Windows.Forms.Button()
 		Me.btnStart = New System.Windows.Forms.Button()
@@ -154,7 +154,7 @@ Partial Class frmMain
 		Me.txtTimeTotal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
 		Me.txtTimeTotal.Enabled = False
 		Me.txtTimeTotal.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.txtTimeTotal.Location = New System.Drawing.Point(314, 406)
+		Me.txtTimeTotal.Location = New System.Drawing.Point(117, 404)
 		Me.txtTimeTotal.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
 		Me.txtTimeTotal.Name = "txtTimeTotal"
 		Me.txtTimeTotal.Size = New System.Drawing.Size(92, 20)
@@ -180,7 +180,7 @@ Partial Class frmMain
 		Me.btnAddProject.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
 		Me.btnAddProject.Image = CType(resources.GetObject("btnAddProject.Image"), System.Drawing.Image)
 		Me.btnAddProject.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-		Me.btnAddProject.Location = New System.Drawing.Point(13, 390)
+		Me.btnAddProject.Location = New System.Drawing.Point(299, 390)
 		Me.btnAddProject.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
 		Me.btnAddProject.Name = "btnAddProject"
 		Me.btnAddProject.Padding = New System.Windows.Forms.Padding(1, 0, 4, 0)
@@ -489,7 +489,7 @@ Partial Class frmMain
 		'
 		Me.lblTimeTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.lblTimeTotal.ForeColor = System.Drawing.SystemColors.GrayText
-		Me.lblTimeTotal.Location = New System.Drawing.Point(311, 388)
+		Me.lblTimeTotal.Location = New System.Drawing.Point(114, 388)
 		Me.lblTimeTotal.Name = "lblTimeTotal"
 		Me.lblTimeTotal.Size = New System.Drawing.Size(92, 15)
 		Me.lblTimeTotal.TabIndex = 66
@@ -500,7 +500,7 @@ Partial Class frmMain
 		'
 		Me.lblTimeToday.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.lblTimeToday.ForeColor = System.Drawing.SystemColors.GrayText
-		Me.lblTimeToday.Location = New System.Drawing.Point(207, 388)
+		Me.lblTimeToday.Location = New System.Drawing.Point(10, 387)
 		Me.lblTimeToday.Name = "lblTimeToday"
 		Me.lblTimeToday.Size = New System.Drawing.Size(92, 15)
 		Me.lblTimeToday.TabIndex = 65
@@ -513,7 +513,7 @@ Partial Class frmMain
 		Me.txtTimeToday.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
 		Me.txtTimeToday.Enabled = False
 		Me.txtTimeToday.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.txtTimeToday.Location = New System.Drawing.Point(210, 406)
+		Me.txtTimeToday.Location = New System.Drawing.Point(13, 404)
 		Me.txtTimeToday.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
 		Me.txtTimeToday.Name = "txtTimeToday"
 		Me.txtTimeToday.Size = New System.Drawing.Size(92, 20)
@@ -616,7 +616,7 @@ Partial Class frmMain
 		Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {ColumnHeader3, Me.ColumnHeader4})
 		Me.ListView1.ContextMenuStrip = Me.ContextMenuStrip1
 		Me.ListView1.HideSelection = False
-		Me.ListView1.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem6, ListViewItem7, ListViewItem8, ListViewItem9, ListViewItem10})
+		Me.ListView1.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1, ListViewItem2, ListViewItem3, ListViewItem4, ListViewItem5})
 		Me.ListView1.LargeImageList = Me.ImageList1
 		Me.ListView1.Location = New System.Drawing.Point(1, 119)
 		Me.ListView1.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
@@ -641,7 +641,7 @@ Partial Class frmMain
 		'
 		Me.Button3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
 		Me.Button3.Image = CType(resources.GetObject("Button3.Image"), System.Drawing.Image)
-		Me.Button3.Location = New System.Drawing.Point(126, 390)
+		Me.Button3.Location = New System.Drawing.Point(259, 390)
 		Me.Button3.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
 		Me.Button3.Name = "Button3"
 		Me.Button3.Padding = New System.Windows.Forms.Padding(1, 0, 4, 0)
@@ -688,7 +688,7 @@ Partial Class frmMain
 		Me.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
 		Me.MinimumSize = New System.Drawing.Size(430, 315)
 		Me.Name = "frmMain"
-		Me.Text = "Blocks"
+		Me.Text = "Hours"
 		Me.ContextMenuStrip1.ResumeLayout(False)
 		CType(Me.picRecording, System.ComponentModel.ISupportInitialize).EndInit()
 		CType(Me.picSaveError, System.ComponentModel.ISupportInitialize).EndInit()
