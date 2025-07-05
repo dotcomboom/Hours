@@ -26,11 +26,11 @@ Partial Class frmMain
 		Dim ColumnHeader1 As System.Windows.Forms.ColumnHeader
 		Dim ColumnHeader3 As System.Windows.Forms.ColumnHeader
 		Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
-		Dim ListViewItem6 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("First Section", 13)
-		Dim ListViewItem7 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Second Section", 13)
-		Dim ListViewItem8 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Third Section", 13)
-		Dim ListViewItem9 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Conclusion", 13)
-		Dim ListViewItem10 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Intro", 13)
+		Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("First Section", 13)
+		Dim ListViewItem2 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Second Section", 13)
+		Dim ListViewItem3 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Third Section", 13)
+		Dim ListViewItem4 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Conclusion", 13)
+		Dim ListViewItem5 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Intro", 13)
 		Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
 		Me.btnPause = New System.Windows.Forms.Button()
 		Me.btnStart = New System.Windows.Forms.Button()
@@ -81,6 +81,7 @@ Partial Class frmMain
 		Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
 		Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
 		Me.Button3 = New System.Windows.Forms.Button()
+		Me.EarliestFirstToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.ContextMenuStrip1.SuspendLayout()
@@ -226,16 +227,16 @@ Partial Class frmMain
 		'
 		'ContextMenuStrip1
 		'
-		Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DurationViewToolStripMenuItem, Me.UseGroupsToolStripMenuItem, Me.ToolStripSeparator2, Me.DiscardSessionToolStripMenuItem})
+		Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DurationViewToolStripMenuItem, Me.UseGroupsToolStripMenuItem, Me.EarliestFirstToolStripMenuItem, Me.ToolStripSeparator2, Me.DiscardSessionToolStripMenuItem})
 		Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-		Me.ContextMenuStrip1.Size = New System.Drawing.Size(150, 76)
+		Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 120)
 		'
 		'DurationViewToolStripMenuItem
 		'
 		Me.DurationViewToolStripMenuItem.CheckOnClick = True
 		Me.DurationViewToolStripMenuItem.Image = CType(resources.GetObject("DurationViewToolStripMenuItem.Image"), System.Drawing.Image)
 		Me.DurationViewToolStripMenuItem.Name = "DurationViewToolStripMenuItem"
-		Me.DurationViewToolStripMenuItem.Size = New System.Drawing.Size(149, 22)
+		Me.DurationViewToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
 		Me.DurationViewToolStripMenuItem.Text = "Duration only"
 		'
 		'UseGroupsToolStripMenuItem
@@ -243,20 +244,20 @@ Partial Class frmMain
 		Me.UseGroupsToolStripMenuItem.CheckOnClick = True
 		Me.UseGroupsToolStripMenuItem.Image = CType(resources.GetObject("UseGroupsToolStripMenuItem.Image"), System.Drawing.Image)
 		Me.UseGroupsToolStripMenuItem.Name = "UseGroupsToolStripMenuItem"
-		Me.UseGroupsToolStripMenuItem.Size = New System.Drawing.Size(149, 22)
+		Me.UseGroupsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
 		Me.UseGroupsToolStripMenuItem.Text = "Group by date"
 		'
 		'ToolStripSeparator2
 		'
 		Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-		Me.ToolStripSeparator2.Size = New System.Drawing.Size(146, 6)
+		Me.ToolStripSeparator2.Size = New System.Drawing.Size(177, 6)
 		Me.ToolStripSeparator2.Visible = False
 		'
 		'DiscardSessionToolStripMenuItem
 		'
 		Me.DiscardSessionToolStripMenuItem.Image = CType(resources.GetObject("DiscardSessionToolStripMenuItem.Image"), System.Drawing.Image)
 		Me.DiscardSessionToolStripMenuItem.Name = "DiscardSessionToolStripMenuItem"
-		Me.DiscardSessionToolStripMenuItem.Size = New System.Drawing.Size(149, 22)
+		Me.DiscardSessionToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
 		Me.DiscardSessionToolStripMenuItem.Text = "Delete session"
 		Me.DiscardSessionToolStripMenuItem.Visible = False
 		'
@@ -626,7 +627,7 @@ Partial Class frmMain
 		Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {ColumnHeader3, Me.ColumnHeader4})
 		Me.ListView1.ContextMenuStrip = Me.ContextMenuStrip1
 		Me.ListView1.HideSelection = False
-		Me.ListView1.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem6, ListViewItem7, ListViewItem8, ListViewItem9, ListViewItem10})
+		Me.ListView1.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1, ListViewItem2, ListViewItem3, ListViewItem4, ListViewItem5})
 		Me.ListView1.LargeImageList = Me.ImageList1
 		Me.ListView1.Location = New System.Drawing.Point(179, 122)
 		Me.ListView1.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
@@ -662,6 +663,14 @@ Partial Class frmMain
 		Me.Button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
 		Me.Button3.UseVisualStyleBackColor = True
 		Me.Button3.Visible = False
+		'
+		'EarliestFirstToolStripMenuItem
+		'
+		Me.EarliestFirstToolStripMenuItem.CheckOnClick = True
+		Me.EarliestFirstToolStripMenuItem.Image = CType(resources.GetObject("EarliestFirstToolStripMenuItem.Image"), System.Drawing.Image)
+		Me.EarliestFirstToolStripMenuItem.Name = "EarliestFirstToolStripMenuItem"
+		Me.EarliestFirstToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+		Me.EarliestFirstToolStripMenuItem.Text = "Earlier sessions first"
 		'
 		'frmMain
 		'
@@ -757,4 +766,5 @@ Partial Class frmMain
 	Friend WithEvents Button3 As Button
 	Friend WithEvents lblGroup As Label
 	Friend WithEvents Panel3 As Panel
+	Friend WithEvents EarliestFirstToolStripMenuItem As ToolStripMenuItem
 End Class

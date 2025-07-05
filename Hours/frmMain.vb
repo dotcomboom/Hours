@@ -245,7 +245,29 @@
 
             lstSessions.EndUpdate()
         End If
+
+        lstSessions.Sorting = SortOrder.None
+        lstSessions.ListViewItemSorter = New ListViewItemSessionComparer()
+        lstSessions.Sort()
     End Sub
+
+    Shared latestAtTheTop As Boolean = True
+
+    Class ListViewItemSessionComparer
+        Implements IComparer
+
+        Public Function Compare(x As Object, y As Object) As Integer
+            If latestAtTheTop Then
+                Return Date.Compare((CType((CType(y, ListViewItem)).Tag, Session)).StartTime, (CType((CType(x, ListViewItem)).Tag, Session).StartTime))
+            Else
+                Return Date.Compare((CType((CType(x, ListViewItem)).Tag, Session)).StartTime, (CType((CType(y, ListViewItem)).Tag, Session).StartTime))
+            End If
+        End Function
+
+        Private Function IComparer_Compare(x As Object, y As Object) As Integer Implements IComparer.Compare
+            Return Compare(x, y)
+        End Function
+    End Class
 
 
     Private Sub viewProjects_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstProjects.ItemSelectionChanged
@@ -670,5 +692,10 @@
             f = New Font(f, FontStyle.Bold)
         End If
         c.Font = f
+    End Sub
+
+    Private Sub EarliestFirstToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EarliestFirstToolStripMenuItem.Click
+        latestAtTheTop = Not latestAtTheTop
+        lstSessions.Sort()
     End Sub
 End Class
