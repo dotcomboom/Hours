@@ -66,21 +66,21 @@ Partial Class frmMain
 		Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.splitMain = New System.Windows.Forms.SplitContainer()
 		Me.Panel1 = New System.Windows.Forms.Panel()
+		Me.Panel3 = New System.Windows.Forms.Panel()
 		Me.lblGroup = New System.Windows.Forms.Label()
+		Me.btnRename = New System.Windows.Forms.Button()
+		Me.Button1 = New System.Windows.Forms.Button()
 		Me.Label4 = New System.Windows.Forms.Label()
 		Me.PictureBox5 = New System.Windows.Forms.PictureBox()
 		Me.PictureBox4 = New System.Windows.Forms.PictureBox()
 		Me.PictureBox3 = New System.Windows.Forms.PictureBox()
 		Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+		Me.Label1 = New System.Windows.Forms.Label()
 		Me.ListView1 = New System.Windows.Forms.ListView()
 		Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-		Me.Label1 = New System.Windows.Forms.Label()
-		Me.Button1 = New System.Windows.Forms.Button()
-		Me.btnRename = New System.Windows.Forms.Button()
 		Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
 		Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
 		Me.Button3 = New System.Windows.Forms.Button()
-		Me.Panel3 = New System.Windows.Forms.Panel()
 		ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.ContextMenuStrip1.SuspendLayout()
@@ -97,11 +97,11 @@ Partial Class frmMain
 		Me.splitMain.Panel2.SuspendLayout()
 		Me.splitMain.SuspendLayout()
 		Me.Panel1.SuspendLayout()
+		Me.Panel3.SuspendLayout()
 		CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
 		CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
 		CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
 		CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-		Me.Panel3.SuspendLayout()
 		Me.SuspendLayout()
 		'
 		'ColumnHeader1
@@ -181,7 +181,7 @@ Partial Class frmMain
 		Me.btnAddProject.Padding = New System.Windows.Forms.Padding(1, 0, 4, 0)
 		Me.btnAddProject.Size = New System.Drawing.Size(105, 30)
 		Me.btnAddProject.TabIndex = 8
-		Me.btnAddProject.Text = "Add project"
+		Me.btnAddProject.Text = "Add activity"
 		Me.btnAddProject.TextAlign = System.Drawing.ContentAlignment.MiddleRight
 		Me.btnAddProject.UseVisualStyleBackColor = True
 		'
@@ -498,6 +498,24 @@ Partial Class frmMain
 		Me.Panel1.Size = New System.Drawing.Size(351, 461)
 		Me.Panel1.TabIndex = 0
 		'
+		'Panel3
+		'
+		Me.Panel3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+			Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+		Me.Panel3.Controls.Add(Me.lblGroup)
+		Me.Panel3.Controls.Add(Me.picRecording)
+		Me.Panel3.Controls.Add(Me.btnRename)
+		Me.Panel3.Controls.Add(Me.btnPause)
+		Me.Panel3.Controls.Add(Me.Button1)
+		Me.Panel3.Controls.Add(Me.btnStart)
+		Me.Panel3.Controls.Add(Me.lstSessions)
+		Me.Panel3.Controls.Add(Me.txtTimeTotal)
+		Me.Panel3.Controls.Add(Me.lblActiveProject)
+		Me.Panel3.Location = New System.Drawing.Point(2, 0)
+		Me.Panel3.Name = "Panel3"
+		Me.Panel3.Size = New System.Drawing.Size(349, 461)
+		Me.Panel3.TabIndex = 63
+		'
 		'lblGroup
 		'
 		Me.lblGroup.AutoEllipsis = True
@@ -509,6 +527,32 @@ Partial Class frmMain
 		Me.lblGroup.Name = "lblGroup"
 		Me.lblGroup.Size = New System.Drawing.Size(231, 16)
 		Me.lblGroup.TabIndex = 62
+		'
+		'btnRename
+		'
+		Me.btnRename.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+		Me.btnRename.Image = CType(resources.GetObject("btnRename.Image"), System.Drawing.Image)
+		Me.btnRename.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+		Me.btnRename.Location = New System.Drawing.Point(245, 432)
+		Me.btnRename.Name = "btnRename"
+		Me.btnRename.Size = New System.Drawing.Size(92, 27)
+		Me.btnRename.TabIndex = 46
+		Me.btnRename.Text = "Rename"
+		Me.btnRename.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+		Me.btnRename.UseVisualStyleBackColor = True
+		'
+		'Button1
+		'
+		Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+		Me.Button1.Image = CType(resources.GetObject("Button1.Image"), System.Drawing.Image)
+		Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+		Me.Button1.Location = New System.Drawing.Point(245, 401)
+		Me.Button1.Name = "Button1"
+		Me.Button1.Size = New System.Drawing.Size(92, 27)
+		Me.Button1.TabIndex = 60
+		Me.Button1.Text = "Group"
+		Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+		Me.Button1.UseVisualStyleBackColor = True
 		'
 		'Label4
 		'
@@ -564,6 +608,17 @@ Partial Class frmMain
 		Me.PictureBox1.TabIndex = 50
 		Me.PictureBox1.TabStop = False
 		'
+		'Label1
+		'
+		Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.Label1.AutoSize = True
+		Me.Label1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label1.Location = New System.Drawing.Point(200, 9)
+		Me.Label1.Name = "Label1"
+		Me.Label1.Size = New System.Drawing.Size(37, 15)
+		Me.Label1.TabIndex = 47
+		Me.Label1.Text = "Goals"
+		'
 		'ListView1
 		'
 		Me.ListView1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -588,43 +643,6 @@ Partial Class frmMain
 		'
 		Me.ColumnHeader4.Text = "Progress"
 		'
-		'Label1
-		'
-		Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-		Me.Label1.AutoSize = True
-		Me.Label1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.Label1.Location = New System.Drawing.Point(200, 9)
-		Me.Label1.Name = "Label1"
-		Me.Label1.Size = New System.Drawing.Size(37, 15)
-		Me.Label1.TabIndex = 47
-		Me.Label1.Text = "Goals"
-		'
-		'Button1
-		'
-		Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-		Me.Button1.Image = CType(resources.GetObject("Button1.Image"), System.Drawing.Image)
-		Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-		Me.Button1.Location = New System.Drawing.Point(245, 401)
-		Me.Button1.Name = "Button1"
-		Me.Button1.Size = New System.Drawing.Size(92, 27)
-		Me.Button1.TabIndex = 60
-		Me.Button1.Text = "Group"
-		Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-		Me.Button1.UseVisualStyleBackColor = True
-		'
-		'btnRename
-		'
-		Me.btnRename.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-		Me.btnRename.Image = CType(resources.GetObject("btnRename.Image"), System.Drawing.Image)
-		Me.btnRename.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-		Me.btnRename.Location = New System.Drawing.Point(245, 432)
-		Me.btnRename.Name = "btnRename"
-		Me.btnRename.Size = New System.Drawing.Size(92, 27)
-		Me.btnRename.TabIndex = 46
-		Me.btnRename.Text = "Rename"
-		Me.btnRename.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-		Me.btnRename.UseVisualStyleBackColor = True
-		'
 		'Timer2
 		'
 		Me.Timer2.Interval = 1000
@@ -644,24 +662,6 @@ Partial Class frmMain
 		Me.Button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
 		Me.Button3.UseVisualStyleBackColor = True
 		Me.Button3.Visible = False
-		'
-		'Panel3
-		'
-		Me.Panel3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-			Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-		Me.Panel3.Controls.Add(Me.lblGroup)
-		Me.Panel3.Controls.Add(Me.picRecording)
-		Me.Panel3.Controls.Add(Me.btnRename)
-		Me.Panel3.Controls.Add(Me.btnPause)
-		Me.Panel3.Controls.Add(Me.Button1)
-		Me.Panel3.Controls.Add(Me.btnStart)
-		Me.Panel3.Controls.Add(Me.lstSessions)
-		Me.Panel3.Controls.Add(Me.txtTimeTotal)
-		Me.Panel3.Controls.Add(Me.lblActiveProject)
-		Me.Panel3.Location = New System.Drawing.Point(2, 0)
-		Me.Panel3.Name = "Panel3"
-		Me.Panel3.Size = New System.Drawing.Size(349, 461)
-		Me.Panel3.TabIndex = 63
 		'
 		'frmMain
 		'
@@ -697,12 +697,12 @@ Partial Class frmMain
 		Me.splitMain.ResumeLayout(False)
 		Me.Panel1.ResumeLayout(False)
 		Me.Panel1.PerformLayout()
+		Me.Panel3.ResumeLayout(False)
+		Me.Panel3.PerformLayout()
 		CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
 		CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
 		CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
 		CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-		Me.Panel3.ResumeLayout(False)
-		Me.Panel3.PerformLayout()
 		Me.ResumeLayout(False)
 		Me.PerformLayout()
 

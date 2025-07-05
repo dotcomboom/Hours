@@ -36,6 +36,11 @@
         'SplitContainer1.SplitterDistance = 999
 
         ShowCommentsToolStripMenuItem_Click()
+
+        If activities.Count > 0 Then
+            act = activities(0)
+            loadActivityUX()
+        End If
     End Sub
 
     Private Sub UpdateActivityHighlight(ByVal act As Activity)
@@ -308,8 +313,8 @@
         lstProjects.EndUpdate()
     End Sub
 
-    Private Sub LabellblActiveProject_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRename.Click
-        If lstProjects.SelectedItems.Count > 0 Then
+    Private Sub LabellblActiveProject_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRename.Click, lblActiveProject.Click
+        If act IsNot Nothing Then
 
             Dim newName As String = InputBox("Enter the name for the activity.", "Set Activity Name", lblActiveProject.Text)
             If newName.Count > 0 Then
@@ -616,14 +621,6 @@
         addProject("New Project")
     End Sub
 
-    'Private Sub Label3_MouseEnter(sender As Object, e As EventArgs)
-    '    Label3.ForeColor = SystemColors.ControlText
-    'End Sub
-
-    'Private Sub Label3_MouseLeave(sender As Object, e As EventArgs)
-    '    Label3.ForeColor = SystemColors.ControlDark
-    'End Sub
-
     Private Sub lstProjects_AfterLabelEdit_1(sender As Object, e As LabelEditEventArgs) Handles lstProjects.AfterLabelEdit
         If Not (e.CancelEdit Or e.Label = "") Then
             Dim obj As Activity = CType(lstProjects.SelectedItems(0).Tag, Activity)
@@ -639,11 +636,15 @@
         'todo
     End Sub
 
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click, lblGroup.Click
         'If lstProjects.SelectedItems.Count > 0 Then
         '    Dim activ As Activity = CType(lstProjects.SelectedItems(0).Tag, Activity)
         Dim activ As Activity = act
-        Dim s As String = InputBox("What category (this is case sensitive)?", "Set category for " & activ.Name, activ.Category)
+        Dim cat As String = activ.Category
+        If cat.Count = 0 Then
+            cat = "Default"
+        End If
+        Dim s As String = InputBox("What category (this is case sensitive)?", "Set category for " & activ.Name, cat)
         If s <> "" Then
             activ.Category = s
             lstSessions.ShowGroups = True
@@ -653,7 +654,21 @@
         'End If
     End Sub
 
-    Private Sub Panel3_Paint(sender As Object, e As PaintEventArgs) Handles Panel3.Paint
+    Private Sub lblGroup_lblActiveProject_MouseEnter(sender As Object, e As EventArgs) Handles lblGroup.MouseEnter, lblActiveProject.MouseEnter
+        Dim c As Control = CType(sender, Control)
+        Dim f As New Font(c.Font, FontStyle.Underline)
+        If c.Font.Bold Then
+            f = New Font(f, FontStyle.Bold Or FontStyle.Underline)
+        End If
+        c.Font = f
+    End Sub
 
+    Private Sub lblGroup_lblActiveProject_MouseLeave(sender As Object, e As EventArgs) Handles lblGroup.MouseLeave, lblActiveProject.MouseLeave
+        Dim c As Control = CType(sender, Control)
+        Dim f As New Font(c.Font, FontStyle.Regular)
+        If c.Font.Bold Then
+            f = New Font(f, FontStyle.Bold)
+        End If
+        c.Font = f
     End Sub
 End Class
