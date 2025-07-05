@@ -177,7 +177,7 @@ Partial Class frmMain
 		'
 		'btnAddProject
 		'
-		Me.btnAddProject.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+		Me.btnAddProject.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.btnAddProject.Image = CType(resources.GetObject("btnAddProject.Image"), System.Drawing.Image)
 		Me.btnAddProject.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
 		Me.btnAddProject.Location = New System.Drawing.Point(299, 390)
@@ -326,34 +326,33 @@ Partial Class frmMain
 		'
 		Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CategorizeToolStripMenuItem, Me.AddProjectToolStripMenuItem, Me.ToolStripSeparator1, Me.DeleteProjectToolStripMenuItem})
 		Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-		Me.ContextMenuStrip2.Size = New System.Drawing.Size(148, 76)
+		Me.ContextMenuStrip2.Size = New System.Drawing.Size(149, 76)
 		'
 		'CategorizeToolStripMenuItem
 		'
 		Me.CategorizeToolStripMenuItem.Image = CType(resources.GetObject("CategorizeToolStripMenuItem.Image"), System.Drawing.Image)
 		Me.CategorizeToolStripMenuItem.Name = "CategorizeToolStripMenuItem"
-		Me.CategorizeToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
-		Me.CategorizeToolStripMenuItem.Text = "Set group..."
+		Me.CategorizeToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
+		Me.CategorizeToolStripMenuItem.Text = "Set category..."
 		'
 		'AddProjectToolStripMenuItem
 		'
 		Me.AddProjectToolStripMenuItem.Image = CType(resources.GetObject("AddProjectToolStripMenuItem.Image"), System.Drawing.Image)
 		Me.AddProjectToolStripMenuItem.Name = "AddProjectToolStripMenuItem"
-		Me.AddProjectToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
-		Me.AddProjectToolStripMenuItem.Text = "Add project"
+		Me.AddProjectToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
+		Me.AddProjectToolStripMenuItem.Text = "Add activity"
 		'
 		'ToolStripSeparator1
 		'
 		Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-		Me.ToolStripSeparator1.Size = New System.Drawing.Size(144, 6)
+		Me.ToolStripSeparator1.Size = New System.Drawing.Size(145, 6)
 		'
 		'DeleteProjectToolStripMenuItem
 		'
-		Me.DeleteProjectToolStripMenuItem.Enabled = False
 		Me.DeleteProjectToolStripMenuItem.Image = CType(resources.GetObject("DeleteProjectToolStripMenuItem.Image"), System.Drawing.Image)
 		Me.DeleteProjectToolStripMenuItem.Name = "DeleteProjectToolStripMenuItem"
-		Me.DeleteProjectToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
-		Me.DeleteProjectToolStripMenuItem.Text = "Delete project"
+		Me.DeleteProjectToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
+		Me.DeleteProjectToolStripMenuItem.Text = "Delete activity"
 		'
 		'ProgressBar1
 		'
@@ -524,7 +523,7 @@ Partial Class frmMain
 		'lblTimingActivity
 		'
 		Me.lblTimingActivity.AutoSize = True
-		Me.lblTimingActivity.Location = New System.Drawing.Point(215, 54)
+		Me.lblTimingActivity.Location = New System.Drawing.Point(149, 23)
 		Me.lblTimingActivity.Name = "lblTimingActivity"
 		Me.lblTimingActivity.Size = New System.Drawing.Size(0, 15)
 		Me.lblTimingActivity.TabIndex = 63
@@ -639,7 +638,7 @@ Partial Class frmMain
 		'
 		'Button3
 		'
-		Me.Button3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+		Me.Button3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.Button3.Image = CType(resources.GetObject("Button3.Image"), System.Drawing.Image)
 		Me.Button3.Location = New System.Drawing.Point(259, 390)
 		Me.Button3.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)

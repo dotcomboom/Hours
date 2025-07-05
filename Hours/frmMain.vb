@@ -37,6 +37,8 @@
 
         ShowCommentsToolStripMenuItem_Click()
 
+        createFirstProject()
+
         If activities.Count > 0 Then
             act = activities(0)
             loadActivityUX()
@@ -105,7 +107,7 @@
         act = timingActivity
         loadActivityUX()
 
-        Me.Text = Application.ProductName
+        UpdateFormText()
         Me.Icon = My.Resources.brick
 
         SaveData()
@@ -122,7 +124,7 @@
         picRecording.Visible = True
         'ProgressBar1.Visible = True
 
-        Me.Text = act.Name & " - " & Application.ProductName
+        UpdateFormText()
 
         'Dim Hicon As IntPtr = My.Resources.hourglass.GetHicon()
         'Dim myNewIcon As Icon = Icon.FromHandle(Hicon)
@@ -136,6 +138,8 @@
 
             Dim n As New Activity
             n.Name = name
+            n.Category = "Default"
+            item.Group = activityGroups("Default")
             activities.Add(n)
 
             item.Tag = n
@@ -161,7 +165,7 @@
     End Sub
 
     Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddProject.Click
-        Dim name As String = InputBox("Enter a name for this project.", "Add Project")
+        Dim name As String = InputBox("Enter a name for this activity.", "Add Activity")
         addProject(name)
     End Sub
 
@@ -204,7 +208,7 @@
 
                 Dim n As New ListViewItem
                 'n.Text = s.StartTime.ToString
-                n.Text = s.StartTime.ToString("t") & ": " & Math.Round(s.TimeSpan.TotalMinutes) & " min"
+                n.Text = Math.Round(s.TimeSpan.TotalMinutes) & " min"
                 n.Tag = s
                 n.ImageIndex = 0
 
@@ -254,7 +258,7 @@
             If timingActivity.beingTimed Then
                 picRecording.Image = My.Resources.hourglass_go
                 lblTimingActivity.Text = timingActivity.Name
-                lblTimingActivity.Show()
+                'lblTimingActivity.Show()
             Else
                 picRecording.Image = My.Resources.hourglass
                 lblTimingActivity.Hide()
@@ -407,6 +411,7 @@
         Else
             activities = sl.LoadFromXML("hours_data.xml")
         End If
+
         'Catch ex As Exception
         '    Throw ex
         'End Try
@@ -584,7 +589,7 @@
     Private Sub btnPause_MouseEnter(sender As System.Object, e As System.EventArgs) Handles btnPause.MouseEnter
         If Not timingActivity Is Nothing Then
             If timingActivity.beingTimed Then
-                hoveringBtn = True
+                'hoveringBtn = True
                 Timer2.Enabled = True
                 Timer2_Tick()
             End If
@@ -651,13 +656,13 @@
     End Sub
 
     Private Sub picRecording_DoubleClick(sender As System.Object, e As System.EventArgs) Handles picRecording.DoubleClick
-        If Not InputBox("Enter the number of minutes to offset the start time.", "Start earlier?") = "" Then
+        'If Not InputBox("Enter the number of minutes to offset the start time.", "Start earlier?") = "" Then
 
-        End If
+        'End If
     End Sub
 
     Private Sub AddProjectToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddProjectToolStripMenuItem.Click
-        addProject("New Project")
+        addProject("Activity")
     End Sub
 
     Private Sub lstProjects_AfterLabelEdit_1(sender As Object, e As LabelEditEventArgs) Handles lstProjects.AfterLabelEdit
@@ -666,13 +671,61 @@
             obj.Name = e.Label
             If obj.Equals(act) Then
                 lblActiveProject.Text = act.Name
+                If timingActivity.Equals(act) Then
+                    UpdateFormText()
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub UpdateFormText()
+        If timingActivity IsNot Nothing Then
+            If timingActivity.beingTimed Then
+                Me.Text = act.Name & " - " & Application.ProductName
+            Else
+                Me.Text = Application.ProductName
             End If
         End If
     End Sub
 
     Private Sub DeleteProjectToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteProjectToolStripMenuItem.Click
+        If lstProjects.SelectedItems.Count = 0 Then
+            Exit Sub
+        End If
         Dim proj As Activity = CType(lstProjects.SelectedItems(0).Tag, Activity)
         'todo
+        Dim s As String = "s"
+        If proj.Events.Count = 1 Then
+            s = ""
+        End If
+        If MsgBox("Delete this activity? " & vbNewLine & "This activity contains " & proj.Events.Count & " session" & s & " with a total of " & proj.getFriendlyTotalTime() & ".", MsgBoxStyle.OkCancel, act.Name) = MsgBoxResult.Ok Then
+            activities.Remove(proj)
+            lstProjects.SelectedItems(0).Remove()
+            If act.Equals(proj) Then
+                If lstProjects.Items.Count > 0 Then
+                    lstProjects.Items(0).Selected = True
+                Else
+                    createFirstProject()
+                End If
+            End If
+            SaveData()
+        End If
+    End Sub
+
+    Private Sub createFirstProject()
+        If activities.Count = 0 Then
+            addProject("General")
+            'ListBox1.SelectedIndex = ListBox1.Items.Count - 1
+
+            'Dim s As New Session(Now, Now)
+            's.Comment = "Created the new project"
+            's.Rating = 3
+            'act.Events.Add(s)
+
+            loadActivityUX()
+
+            SaveData()
+        End If
     End Sub
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles lblGroup.Click, CategorizeToolStripMenuItem.Click
@@ -716,4 +769,9 @@
         lstSessions.Sort()
     End Sub
 
+    Private Sub lstProjects_ItemActivate(sender As Object, e As EventArgs) Handles lstProjects.ItemActivate
+        If btnStart.Enabled Then
+            btnStart.PerformClick()
+        End If
+    End Sub
 End Class

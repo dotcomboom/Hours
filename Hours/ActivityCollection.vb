@@ -18,4 +18,13 @@
     Sub Add(ByVal n As Activity)
         Activities.Add(n)
     End Sub
+
+	Friend Sub Remove(byref proj As Hours.Activity)
+        For Each act As Activity In Activities
+            If act.Equals(proj) Then
+                Activities.Remove(act)
+                Exit Sub
+            End If
+        Next
+    End Sub
 End Class
