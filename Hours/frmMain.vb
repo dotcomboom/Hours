@@ -139,8 +139,9 @@
             Dim n As New Activity
             n.Name = name
             n.Category = "Default"
-            item.Group = activityGroups("Default")
+            'item.Group = activityGroups("Default")
             activities.Add(n)
+            loadList()
 
             item.Tag = n
 
@@ -546,10 +547,6 @@
         SaveData()
     End Sub
 
-    Private Sub CategorizeToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CategorizeToolStripMenuItem.Click
-
-    End Sub
-
     Private Sub btnCategoryView_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         lstProjects.ShowGroups = Not lstProjects.ShowGroups
     End Sub
@@ -671,8 +668,10 @@
             obj.Name = e.Label
             If obj.Equals(act) Then
                 lblActiveProject.Text = act.Name
-                If timingActivity.Equals(act) Then
-                    UpdateFormText()
+                If timingActivity IsNot Nothing Then
+                    If timingActivity.Equals(act) Then
+                        UpdateFormText()
+                    End If
                 End If
             End If
         End If
