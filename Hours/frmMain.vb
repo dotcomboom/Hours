@@ -32,6 +32,12 @@
             'Catch ex As Exception
             '    msgb()
             'End Try
+        Else
+            FileSystemWatcher1.EnableRaisingEvents = False
+            My.Computer.FileSystem.WriteAllText("hours_data.xml",
+                                                "<?xml version=""1.0"" encoding=""utf-8""?><Projects><Activity Name=""Default""></Activity></Projects>", False)
+            LoadData()
+            FileSystemWatcher1.EnableRaisingEvents = True
         End If
         'SplitContainer1.SplitterDistance = 999
 
@@ -108,7 +114,7 @@
         loadActivityUX()
 
         UpdateFormText()
-        Me.Icon = My.Resources.brick
+        'Me.Icon = My.Resources.brick
 
         SaveData()
     End Sub
@@ -257,15 +263,15 @@
 
         If timingActivity IsNot Nothing And timingActivity IsNot act Then
             If timingActivity.beingTimed Then
-                picRecording.Image = My.Resources.hourglass_go
+                'picRecording.Image = My.Resources.hourglass_go
                 lblTimingActivity.Text = timingActivity.Name
                 'lblTimingActivity.Show()
             Else
-                picRecording.Image = My.Resources.hourglass
+                'picRecording.Image = My.Resources.hourglass
                 lblTimingActivity.Hide()
             End If
         Else
-            picRecording.Image = My.Resources.hourglass
+            'picRecording.Image = My.Resources.hourglass
             lblTimingActivity.Hide()
         End If
     End Sub
@@ -586,7 +592,7 @@
     Private Sub btnPause_MouseEnter(sender As System.Object, e As System.EventArgs) Handles btnPause.MouseEnter
         If Not timingActivity Is Nothing Then
             If timingActivity.beingTimed Then
-                'hoveringBtn = True
+                hoveringBtn = True
                 Timer2.Enabled = True
                 Timer2_Tick()
             End If
@@ -640,9 +646,9 @@
     Private Sub picRecording_MouseEnter(sender As System.Object, e As System.EventArgs) Handles picRecording.MouseEnter
         If Not timingActivity Is Nothing Then
             If timingActivity.beingTimed Then
-                hoveringHourglass = True
-                Timer2.Enabled = True
-                Timer2_Tick()
+                'hoveringHourglass = True
+                'Timer2.Enabled = True
+                'Timer2_Tick()
             End If
         End If
     End Sub
@@ -772,5 +778,9 @@
         If btnStart.Enabled Then
             btnStart.PerformClick()
         End If
+    End Sub
+
+    Private Sub SaveData(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles btnRetrySave.LinkClicked
+
     End Sub
 End Class
