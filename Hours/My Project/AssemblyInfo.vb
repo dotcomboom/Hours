@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("")> 
 <Assembly: AssemblyCompany("dotcomboom")>
 <Assembly: AssemblyProduct("Hours")>
-<Assembly: AssemblyCopyright("Copyright © dotcomboom 2025")>
+<Assembly: AssemblyCopyright("Copyright © dotcomboom 2026")>
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
