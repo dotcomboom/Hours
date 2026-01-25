@@ -181,7 +181,7 @@
             Exit Sub
         End If
         If activities.Count > 0 Then
-            txtTimeToday.Text = act.getTotalOnDay(Date.Today).ToString
+            txtTimeToday.Text = act.getTotalOnDay(Date.Today).ToString("hh\:mm\:ss")
             txtTimeTotal.Text = act.getTotalTime().ToString("hh\:mm\:ss")
             lblActiveProject.Text = act.Name
             lblGroup.Text = act.Category
@@ -263,7 +263,7 @@
 
         If timingActivity IsNot Nothing And timingActivity IsNot act Then
             If timingActivity.beingTimed Then
-                'picRecording.Image = My.Resources.hourglass_go
+                picRecording.Image = My.Resources.hourglass_go
                 lblTimingActivity.Text = timingActivity.Name
                 'lblTimingActivity.Show()
             Else
@@ -509,7 +509,7 @@
             txtTimeToday.Text = d.ToString("hh\:mm\:ss")
         Else
             lblTimeToday.Text = "Time today"
-            txtTimeToday.Text = act.getTotalOnDay(Date.Today).ToString
+            txtTimeToday.Text = act.getTotalOnDay(Date.Today).ToString("hh\:mm\:ss")
         End If
     End Sub
 

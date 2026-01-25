@@ -26,11 +26,11 @@ Partial Class frmMain
 		Dim ColumnHeader1 As System.Windows.Forms.ColumnHeader
 		Dim ColumnHeader3 As System.Windows.Forms.ColumnHeader
 		Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
-		Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("First Section", 13)
-		Dim ListViewItem2 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Second Section", 13)
-		Dim ListViewItem3 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Third Section", 13)
-		Dim ListViewItem4 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Conclusion", 13)
-		Dim ListViewItem5 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Intro", 13)
+		Dim ListViewItem6 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("First Section", 13)
+		Dim ListViewItem7 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Second Section", 13)
+		Dim ListViewItem8 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Third Section", 13)
+		Dim ListViewItem9 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Conclusion", 13)
+		Dim ListViewItem10 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Intro", 13)
 		Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
 		Me.btnPause = New System.Windows.Forms.Button()
 		Me.btnStart = New System.Windows.Forms.Button()
@@ -74,14 +74,14 @@ Partial Class frmMain
 		Me.Panel3 = New System.Windows.Forms.Panel()
 		Me.lblTimingActivity = New System.Windows.Forms.Label()
 		Me.lblGroup = New System.Windows.Forms.Label()
-		Me.lstProjects = New System.Windows.Forms.ListView()
-		Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.splitMain = New System.Windows.Forms.SplitContainer()
 		Me.lblTimeTotal = New System.Windows.Forms.Label()
 		Me.lblTimeToday = New System.Windows.Forms.Label()
 		Me.txtTimeToday = New System.Windows.Forms.Label()
 		Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
 		Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
+		Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+		Me.lstProjects = New System.Windows.Forms.ListView()
 		ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.ContextMenuStrip1.SuspendLayout()
@@ -122,7 +122,7 @@ Partial Class frmMain
 		'btnPause
 		'
 		Me.btnPause.Enabled = False
-		'Me.btnPause.Image = Global.Hours.My.Resources.Resources.control_pause
+		Me.btnPause.Image = Global.Hours.My.Resources.Resources.control_pause
 		Me.btnPause.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
 		Me.btnPause.Location = New System.Drawing.Point(95, 46)
 		Me.btnPause.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
@@ -130,11 +130,12 @@ Partial Class frmMain
 		Me.btnPause.Size = New System.Drawing.Size(92, 27)
 		Me.btnPause.TabIndex = 1
 		Me.btnPause.Text = "Pause"
+		Me.btnPause.TextAlign = System.Drawing.ContentAlignment.MiddleRight
 		Me.btnPause.UseVisualStyleBackColor = True
 		'
 		'btnStart
 		'
-		'Me.btnStart.Image = Global.Hours.My.Resources.Resources.control_play
+		Me.btnStart.Image = Global.Hours.My.Resources.Resources.control_play_blue
 		Me.btnStart.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
 		Me.btnStart.Location = New System.Drawing.Point(-1, 46)
 		Me.btnStart.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
@@ -142,14 +143,15 @@ Partial Class frmMain
 		Me.btnStart.Size = New System.Drawing.Size(92, 27)
 		Me.btnStart.TabIndex = 2
 		Me.btnStart.Text = "Start"
+		Me.btnStart.TextAlign = System.Drawing.ContentAlignment.MiddleRight
 		Me.btnStart.UseVisualStyleBackColor = True
 		'
 		'txtTimeTotal
 		'
 		Me.txtTimeTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
 		Me.txtTimeTotal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.txtTimeTotal.Enabled = False
 		Me.txtTimeTotal.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.txtTimeTotal.ForeColor = System.Drawing.SystemColors.ControlDarkDark
 		Me.txtTimeTotal.Location = New System.Drawing.Point(117, 406)
 		Me.txtTimeTotal.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
 		Me.txtTimeTotal.Name = "txtTimeTotal"
@@ -230,14 +232,14 @@ Partial Class frmMain
 		Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
 		Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DurationViewToolStripMenuItem, Me.UseGroupsToolStripMenuItem, Me.EarliestFirstToolStripMenuItem, Me.ToolStripSeparator2, Me.DiscardSessionToolStripMenuItem})
 		Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-		Me.ContextMenuStrip1.Size = New System.Drawing.Size(180, 114)
+		Me.ContextMenuStrip1.Size = New System.Drawing.Size(211, 114)
 		'
 		'DurationViewToolStripMenuItem
 		'
 		Me.DurationViewToolStripMenuItem.CheckOnClick = True
 		Me.DurationViewToolStripMenuItem.Image = CType(resources.GetObject("DurationViewToolStripMenuItem.Image"), System.Drawing.Image)
 		Me.DurationViewToolStripMenuItem.Name = "DurationViewToolStripMenuItem"
-		Me.DurationViewToolStripMenuItem.Size = New System.Drawing.Size(179, 26)
+		Me.DurationViewToolStripMenuItem.Size = New System.Drawing.Size(210, 26)
 		Me.DurationViewToolStripMenuItem.Text = "Duration only"
 		'
 		'UseGroupsToolStripMenuItem
@@ -245,7 +247,7 @@ Partial Class frmMain
 		Me.UseGroupsToolStripMenuItem.CheckOnClick = True
 		Me.UseGroupsToolStripMenuItem.Image = CType(resources.GetObject("UseGroupsToolStripMenuItem.Image"), System.Drawing.Image)
 		Me.UseGroupsToolStripMenuItem.Name = "UseGroupsToolStripMenuItem"
-		Me.UseGroupsToolStripMenuItem.Size = New System.Drawing.Size(179, 26)
+		Me.UseGroupsToolStripMenuItem.Size = New System.Drawing.Size(210, 26)
 		Me.UseGroupsToolStripMenuItem.Text = "Group by date"
 		'
 		'EarliestFirstToolStripMenuItem
@@ -253,20 +255,20 @@ Partial Class frmMain
 		Me.EarliestFirstToolStripMenuItem.CheckOnClick = True
 		Me.EarliestFirstToolStripMenuItem.Image = CType(resources.GetObject("EarliestFirstToolStripMenuItem.Image"), System.Drawing.Image)
 		Me.EarliestFirstToolStripMenuItem.Name = "EarliestFirstToolStripMenuItem"
-		Me.EarliestFirstToolStripMenuItem.Size = New System.Drawing.Size(179, 26)
+		Me.EarliestFirstToolStripMenuItem.Size = New System.Drawing.Size(210, 26)
 		Me.EarliestFirstToolStripMenuItem.Text = "Earlier sessions first"
 		'
 		'ToolStripSeparator2
 		'
 		Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-		Me.ToolStripSeparator2.Size = New System.Drawing.Size(176, 6)
+		Me.ToolStripSeparator2.Size = New System.Drawing.Size(207, 6)
 		Me.ToolStripSeparator2.Visible = False
 		'
 		'DiscardSessionToolStripMenuItem
 		'
 		Me.DiscardSessionToolStripMenuItem.Image = CType(resources.GetObject("DiscardSessionToolStripMenuItem.Image"), System.Drawing.Image)
 		Me.DiscardSessionToolStripMenuItem.Name = "DiscardSessionToolStripMenuItem"
-		Me.DiscardSessionToolStripMenuItem.Size = New System.Drawing.Size(179, 26)
+		Me.DiscardSessionToolStripMenuItem.Size = New System.Drawing.Size(210, 26)
 		Me.DiscardSessionToolStripMenuItem.Text = "Delete session"
 		Me.DiscardSessionToolStripMenuItem.Visible = False
 		'
@@ -300,7 +302,7 @@ Partial Class frmMain
 		Me.btnRetrySave.Location = New System.Drawing.Point(234, 405)
 		Me.btnRetrySave.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
 		Me.btnRetrySave.Name = "btnRetrySave"
-		Me.btnRetrySave.Size = New System.Drawing.Size(65, 15)
+		Me.btnRetrySave.Size = New System.Drawing.Size(83, 20)
 		Me.btnRetrySave.TabIndex = 16
 		Me.btnRetrySave.TabStop = True
 		Me.btnRetrySave.Text = "Retry save?"
@@ -324,32 +326,32 @@ Partial Class frmMain
 		Me.ContextMenuStrip2.ImageScalingSize = New System.Drawing.Size(20, 20)
 		Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CategorizeToolStripMenuItem, Me.AddProjectToolStripMenuItem, Me.ToolStripSeparator1, Me.DeleteProjectToolStripMenuItem})
 		Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-		Me.ContextMenuStrip2.Size = New System.Drawing.Size(153, 88)
+		Me.ContextMenuStrip2.Size = New System.Drawing.Size(178, 88)
 		'
 		'CategorizeToolStripMenuItem
 		'
 		Me.CategorizeToolStripMenuItem.Image = CType(resources.GetObject("CategorizeToolStripMenuItem.Image"), System.Drawing.Image)
 		Me.CategorizeToolStripMenuItem.Name = "CategorizeToolStripMenuItem"
-		Me.CategorizeToolStripMenuItem.Size = New System.Drawing.Size(152, 26)
+		Me.CategorizeToolStripMenuItem.Size = New System.Drawing.Size(177, 26)
 		Me.CategorizeToolStripMenuItem.Text = "Set category..."
 		'
 		'AddProjectToolStripMenuItem
 		'
 		Me.AddProjectToolStripMenuItem.Image = CType(resources.GetObject("AddProjectToolStripMenuItem.Image"), System.Drawing.Image)
 		Me.AddProjectToolStripMenuItem.Name = "AddProjectToolStripMenuItem"
-		Me.AddProjectToolStripMenuItem.Size = New System.Drawing.Size(152, 26)
+		Me.AddProjectToolStripMenuItem.Size = New System.Drawing.Size(177, 26)
 		Me.AddProjectToolStripMenuItem.Text = "Add activity"
 		'
 		'ToolStripSeparator1
 		'
 		Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-		Me.ToolStripSeparator1.Size = New System.Drawing.Size(149, 6)
+		Me.ToolStripSeparator1.Size = New System.Drawing.Size(174, 6)
 		'
 		'DeleteProjectToolStripMenuItem
 		'
 		Me.DeleteProjectToolStripMenuItem.Image = CType(resources.GetObject("DeleteProjectToolStripMenuItem.Image"), System.Drawing.Image)
 		Me.DeleteProjectToolStripMenuItem.Name = "DeleteProjectToolStripMenuItem"
-		Me.DeleteProjectToolStripMenuItem.Size = New System.Drawing.Size(152, 26)
+		Me.DeleteProjectToolStripMenuItem.Size = New System.Drawing.Size(177, 26)
 		Me.DeleteProjectToolStripMenuItem.Text = "Delete activity"
 		'
 		'ProgressBar1
@@ -456,7 +458,7 @@ Partial Class frmMain
 		Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {ColumnHeader3, Me.ColumnHeader4})
 		Me.ListView1.ContextMenuStrip = Me.ContextMenuStrip1
 		Me.ListView1.HideSelection = False
-		Me.ListView1.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1, ListViewItem2, ListViewItem3, ListViewItem4, ListViewItem5})
+		Me.ListView1.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem6, ListViewItem7, ListViewItem8, ListViewItem9, ListViewItem10})
 		Me.ListView1.LargeImageList = Me.ImageList1
 		Me.ListView1.Location = New System.Drawing.Point(1, 119)
 		Me.ListView1.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
@@ -480,7 +482,7 @@ Partial Class frmMain
 		Me.Label1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.Label1.Location = New System.Drawing.Point(22, 6)
 		Me.Label1.Name = "Label1"
-		Me.Label1.Size = New System.Drawing.Size(37, 15)
+		Me.Label1.Size = New System.Drawing.Size(48, 20)
 		Me.Label1.TabIndex = 47
 		Me.Label1.Text = "Goals"
 		'
@@ -490,7 +492,7 @@ Partial Class frmMain
 		Me.Label4.AutoSize = True
 		Me.Label4.Location = New System.Drawing.Point(116, 28)
 		Me.Label4.Name = "Label4"
-		Me.Label4.Size = New System.Drawing.Size(47, 15)
+		Me.Label4.Size = New System.Drawing.Size(61, 20)
 		Me.Label4.TabIndex = 59
 		Me.Label4.Text = "Day 1/4"
 		'
@@ -545,7 +547,7 @@ Partial Class frmMain
 		Me.lblTimingActivity.AutoSize = True
 		Me.lblTimingActivity.Location = New System.Drawing.Point(149, 23)
 		Me.lblTimingActivity.Name = "lblTimingActivity"
-		Me.lblTimingActivity.Size = New System.Drawing.Size(0, 15)
+		Me.lblTimingActivity.Size = New System.Drawing.Size(0, 20)
 		Me.lblTimingActivity.TabIndex = 63
 		Me.lblTimingActivity.Visible = False
 		'
@@ -562,32 +564,6 @@ Partial Class frmMain
 		Me.lblGroup.Name = "lblGroup"
 		Me.lblGroup.Size = New System.Drawing.Size(226, 21)
 		Me.lblGroup.TabIndex = 62
-		'
-		'lstProjects
-		'
-		Me.lstProjects.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader2})
-		Me.lstProjects.ContextMenuStrip = Me.ContextMenuStrip2
-		Me.lstProjects.Dock = System.Windows.Forms.DockStyle.Fill
-		Me.lstProjects.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.lstProjects.FullRowSelect = True
-		Me.lstProjects.GridLines = True
-		Me.lstProjects.HideSelection = False
-		Me.lstProjects.LabelEdit = True
-		Me.lstProjects.Location = New System.Drawing.Point(0, 0)
-		Me.lstProjects.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-		Me.lstProjects.MultiSelect = False
-		Me.lstProjects.Name = "lstProjects"
-		Me.lstProjects.Size = New System.Drawing.Size(151, 377)
-		Me.lstProjects.Sorting = System.Windows.Forms.SortOrder.Ascending
-		Me.lstProjects.TabIndex = 2
-		Me.lstProjects.TileSize = New System.Drawing.Size(268, 20)
-		Me.lstProjects.UseCompatibleStateImageBehavior = False
-		Me.lstProjects.View = System.Windows.Forms.View.SmallIcon
-		'
-		'ColumnHeader2
-		'
-		Me.ColumnHeader2.Text = "uuu"
-		Me.ColumnHeader2.Width = 0
 		'
 		'splitMain
 		'
@@ -615,7 +591,7 @@ Partial Class frmMain
 		'lblTimeTotal
 		'
 		Me.lblTimeTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-		Me.lblTimeTotal.ForeColor = System.Drawing.SystemColors.GrayText
+		Me.lblTimeTotal.ForeColor = System.Drawing.SystemColors.ControlDarkDark
 		Me.lblTimeTotal.Location = New System.Drawing.Point(114, 386)
 		Me.lblTimeTotal.Name = "lblTimeTotal"
 		Me.lblTimeTotal.Size = New System.Drawing.Size(95, 19)
@@ -626,7 +602,7 @@ Partial Class frmMain
 		'lblTimeToday
 		'
 		Me.lblTimeToday.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-		Me.lblTimeToday.ForeColor = System.Drawing.SystemColors.GrayText
+		Me.lblTimeToday.ForeColor = System.Drawing.SystemColors.ControlDarkDark
 		Me.lblTimeToday.Location = New System.Drawing.Point(10, 384)
 		Me.lblTimeToday.Name = "lblTimeToday"
 		Me.lblTimeToday.Size = New System.Drawing.Size(98, 22)
@@ -638,8 +614,8 @@ Partial Class frmMain
 		'
 		Me.txtTimeToday.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
 		Me.txtTimeToday.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.txtTimeToday.Enabled = False
 		Me.txtTimeToday.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.txtTimeToday.ForeColor = System.Drawing.SystemColors.ControlDarkDark
 		Me.txtTimeToday.Location = New System.Drawing.Point(13, 406)
 		Me.txtTimeToday.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
 		Me.txtTimeToday.Name = "txtTimeToday"
@@ -652,9 +628,35 @@ Partial Class frmMain
 		'
 		Me.Timer2.Interval = 1000
 		'
+		'ColumnHeader2
+		'
+		Me.ColumnHeader2.Text = "uuu"
+		Me.ColumnHeader2.Width = 0
+		'
+		'lstProjects
+		'
+		Me.lstProjects.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader2})
+		Me.lstProjects.ContextMenuStrip = Me.ContextMenuStrip2
+		Me.lstProjects.Dock = System.Windows.Forms.DockStyle.Fill
+		Me.lstProjects.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.lstProjects.FullRowSelect = True
+		Me.lstProjects.GridLines = True
+		Me.lstProjects.HideSelection = False
+		Me.lstProjects.LabelEdit = True
+		Me.lstProjects.Location = New System.Drawing.Point(0, 0)
+		Me.lstProjects.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+		Me.lstProjects.MultiSelect = False
+		Me.lstProjects.Name = "lstProjects"
+		Me.lstProjects.Size = New System.Drawing.Size(151, 377)
+		Me.lstProjects.Sorting = System.Windows.Forms.SortOrder.Ascending
+		Me.lstProjects.TabIndex = 2
+		Me.lstProjects.TileSize = New System.Drawing.Size(268, 20)
+		Me.lstProjects.UseCompatibleStateImageBehavior = False
+		Me.lstProjects.View = System.Windows.Forms.View.SmallIcon
+		'
 		'frmMain
 		'
-		Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
+		Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
 		Me.BackColor = System.Drawing.SystemColors.Control
 		Me.ClientSize = New System.Drawing.Size(414, 432)
@@ -719,8 +721,6 @@ Partial Class frmMain
 	Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
 	Friend WithEvents FileSystemWatcher1 As System.IO.FileSystemWatcher
 	Friend WithEvents splitProjects As System.Windows.Forms.SplitContainer
-	Friend WithEvents lstProjects As System.Windows.Forms.ListView
-	Friend WithEvents ColumnHeader2 As System.Windows.Forms.ColumnHeader
 	Friend WithEvents splitMain As System.Windows.Forms.SplitContainer
 	Friend WithEvents Timer2 As System.Windows.Forms.Timer
 	Friend WithEvents Panel2 As Panel
@@ -749,4 +749,6 @@ Partial Class frmMain
 	Friend WithEvents lblTimeTotal As Label
 	Friend WithEvents lblTimeToday As Label
 	Friend WithEvents Panel4 As Panel
+	Friend WithEvents lstProjects As ListView
+	Friend WithEvents ColumnHeader2 As ColumnHeader
 End Class

@@ -9,7 +9,7 @@
         Me.Text = "Session on " & s.StartTime.ToShortDateString
         lblStart.Text = s.StartTime.ToShortTimeString
         lblEnd.Text = s.EndTime.ToShortTimeString
-        lblDuration.Text = s.TimeSpan.ToString
+        lblDuration.Text = s.TimeSpan.ToString("hh\:mm\:ss")
         barRating.Value = s.Rating
         txtComment.Text = s.Comment
 
@@ -56,7 +56,7 @@
             session.EndTime = dialog.endTime
 
             lblEnd.Text = session.EndTime.ToShortTimeString
-            lblDuration.Text = session.TimeSpan.ToString
+            lblDuration.Text = session.TimeSpan.ToString("hh\:mm\:ss")
         End If
     End Sub
 End Class
