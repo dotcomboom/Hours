@@ -19,15 +19,15 @@ Windows, .NET Framework 4.0. VS 2010 or VS 2022 should be acceptable to build.
 
 ### Projects
 
-Projects or Activities store your sessions, and can optionally be placed into categories for grouping related activities. They're all displayed along the left side of the Hours window, and can be added from the bottom left.
+Projects or Activities store your sessions, and can optionally be placed into categories for grouping related activities. They're all displayed along the right side of the Hours window, and can be added from the bottom right.
  
-A project can be grouped into a category with the "Set category..." option on its secondary click menu. A project can be renamed by clicking twice its name in the project view.
+A project can be grouped into a category with the "Set category..." option on its secondary click menu. A project can be renamed by clicking its name twice in the project view.
 
-Projects are arranged alphabetically. Categories don't have any particular order beyond what the ListView feels like.
+Projects are arranged alphabetically. Categories have an order more representative of categories of the first projects added (at this time).
 
 ### Sessions
 
-Sessions are recorded blocks of time. Their details can be viewed per project on a timeline view in the right side of the window, and a recorded Session contributes to an added up total on the bottom right, alongside today's total. The timeline is grouped by day, with sessions sorted in ascending order. Selecting multiple sessions in the timeline sums them up in a selected time tally where today's total would be.
+Sessions are recorded blocks of time. Their details can be viewed per project on a timeline view in the right side of the window, and a recorded Session contributes to an added up total on the bottom left, alongside today's total. The timeline is grouped by day, with sessions sorted in ascending order. Selecting multiple sessions in the timeline sums them up in a selected time tally where today's total would be.
 
 #### Timing a session
 
