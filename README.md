@@ -1,6 +1,8 @@
 # Hours
 
-Hours is a scrappy time tracker with some added niceties. It's a work in progress, so specifications and features are prone to change.
+Hours is a time tracker; it's a work in progress, so specifications and features are prone to change.
+
+![](https://private-user-images.githubusercontent.com/38927017/540298732-e74b19ef-06f1-4c46-8f49-2e180f1a10df.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjkzOTY1NjEsIm5iZiI6MTc2OTM5NjI2MSwicGF0aCI6Ii8zODkyNzAxNy81NDAyOTg3MzItZTc0YjE5ZWYtMDZmMS00YzQ2LThmNDktMmUxODBmMWExMGRmLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNjAxMjYlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYwMTI2VDAyNTc0MVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWU0NWY3YjA1YjViYWVhOTMyNGI5MTdmNDY0ZWYzN2Q0OTU2MDFlODM2MTRhYmVmZmU2YTI3MWY4NDYzZGMwMTMmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.slDi9K6YivXyY7oFMCktFgHFGr_2uIijFAgsx-3tYCY)
 
 ## License
 Hours source code is MIT licensed.
@@ -29,7 +31,7 @@ Sessions are recorded blocks of time. Their details can be viewed per project on
 
 #### Timing a session
 
-A Session is started by hitting the Start button, and then concluded by hitting the Pause (or Log) button. Pointing the mouse on the hourglass icon (below the pause button) displays the elapsed time in H:MM format.
+A Session is started by hitting the Start button, and then concluded by hitting the Pause (or Log) button. Pointing the mouse on the pause button displays the elapsed time in H:MM format.
 
 #### Reviewing sessions
 
