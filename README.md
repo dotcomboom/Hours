@@ -1,6 +1,8 @@
 # Hours
 
-Hours is a scrappy time tracker with some added niceties. It's a work in progress, so specifications and features are prone to change.
+Hours is a time tracker; it's a work in progress, so specifications and features are prone to change.
+
+![](https://private-user-images.githubusercontent.com/38927017/540298732-e74b19ef-06f1-4c46-8f49-2e180f1a10df.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjkzOTY1NjEsIm5iZiI6MTc2OTM5NjI2MSwicGF0aCI6Ii8zODkyNzAxNy81NDAyOTg3MzItZTc0YjE5ZWYtMDZmMS00YzQ2LThmNDktMmUxODBmMWExMGRmLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNjAxMjYlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYwMTI2VDAyNTc0MVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWU0NWY3YjA1YjViYWVhOTMyNGI5MTdmNDY0ZWYzN2Q0OTU2MDFlODM2MTRhYmVmZmU2YTI3MWY4NDYzZGMwMTMmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.slDi9K6YivXyY7oFMCktFgHFGr_2uIijFAgsx-3tYCY)
 
 ## License
 Hours source code is MIT licensed.
@@ -17,19 +19,19 @@ Windows, .NET Framework 4.0. VS 2010 or VS 2022 should be acceptable to build.
 
 ### Projects
 
-Projects or Activities store your sessions, and can optionally be placed into categories for grouping related activities. They're all displayed along the left side of the Hours window, and can be added from the bottom left.
+Projects or Activities store your sessions, and can optionally be placed into categories for grouping related activities. They're all displayed along the right side of the Hours window, and can be added from the bottom right.
  
-A project can be grouped into a category with the "Set category..." option on its secondary click menu. A project can be renamed by clicking twice its name in the project view.
+A project can be grouped into a category with the "Set category..." option on its secondary click menu. A project can be renamed by clicking its name twice in the project view.
 
-Projects are arranged alphabetically. Categories don't have any particular order beyond what the ListView feels like.
+Projects are arranged alphabetically. Categories have an order more representative of categories of the first projects added (at this time).
 
 ### Sessions
 
-Sessions are recorded blocks of time. Their details can be viewed per project on a timeline view in the right side of the window, and a recorded Session contributes to an added up total on the bottom right, alongside today's total. The timeline is grouped by day, with sessions sorted in ascending order. Selecting multiple sessions in the timeline sums them up in a selected time tally where today's total would be.
+Sessions are recorded blocks of time. Their details can be viewed per project on a timeline view in the right side of the window, and a recorded Session contributes to an added up total on the bottom left, alongside today's total. The timeline is grouped by day, with sessions sorted in ascending order. Selecting multiple sessions in the timeline sums them up in a selected time tally where today's total would be.
 
 #### Timing a session
 
-A Session is started by hitting the Start button, and then concluded by hitting the Pause (or Log) button. Pointing the mouse on the hourglass icon (below the pause button) displays the elapsed time in H:MM format.
+A Session is started by hitting the Start button, and then concluded by hitting the Pause (or Log) button. Pointing the mouse on the pause button displays the elapsed time in H:MM format.
 
 #### Reviewing sessions
 
