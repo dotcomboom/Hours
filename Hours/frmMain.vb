@@ -945,20 +945,28 @@
         End If
         NotifyCMS.Items.Add(New ToolStripSeparator)
 
-        Dim latestSessions As List(Of Session) = GetLatestSessions(5)
+        Dim latestSessions As List(Of Session) = GetLatestSessions(3)
 
         Dim sessionItem As ToolStripMenuItem
 
         If latestSessions.Count > 0 Then
             For Each s As Session In latestSessions
                 sessionItem = New ToolStripMenuItem
-                sessionItem.Image = LatestSessionToolStripMenuItem.Image
+                sessionItem.Image = ImageList1.Images(0)
+                sessionItem.Text = GetFriendlySessionTime(s) & ": "
                 sessionItem.Tag = s
                 If s.Comment.Length > 0 Then
-                    sessionItem.Text = GetFriendlySessionTime(s) & ": " & s.Comment & " (" & s.StartTime.ToShortDateString & " " & s.StartTime.ToShortTimeString() & ")"
+                    sessionItem.Image = ImageList1.Images(2)
+                    sessionItem.ToolTipText = s.Activity?.Name & vbNewLine
+                    sessionItem.Text &= CStr(chunk(s.Comment, 40))
                 Else
-                    sessionItem.Text = GetFriendlySessionTime(s) & ": " & s.Activity?.Name & " (" & s.StartTime.ToShortDateString & " " & s.StartTime.ToShortTimeString() & ")"
+                    sessionItem.Text &= s.Activity?.Name
                 End If
+                sessionItem.ToolTipText &= s.EndTime.Subtract(s.StartTime).ToString("hh\:mm\:ss")
+                'If s.Comment.Length > 0 Then
+                '    sessionItem.Text = GetFriendlySessionTime(s) & ": " & s.Comment
+                'Else
+                'End If
                 NotifyCMS.Items.Add(sessionItem)
                 AddHandler sessionItem.Click, Sub(sender2, eventargs2)
                                                   doEditWithSession(s)
