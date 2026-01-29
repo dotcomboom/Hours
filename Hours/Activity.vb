@@ -1,4 +1,5 @@
 ﻿Public Class Activity
+    Implements IComparable(Of Activity)
 
     Public Property Name As String
     Public Property Category As String = ""
@@ -8,6 +9,15 @@
     Protected Friend beingTimed As Boolean = False
     Public TimerBegin As New DateTime
     Public TimerEnd As New DateTime
+
+    Public Overloads Function CompareTo(ByVal other As Activity) As Integer _
+        Implements IComparable(Of Activity).CompareTo
+        ' MS docs: https://learn.microsoft.com/en-us/dotnet/api/system.icomparable-1?view=net-10.0
+        ' If other is not a valid object reference, this instance is greater.
+        If other Is Nothing Then Return 1
+
+        Return Name.CompareTo(other.Name)
+    End Function
 
     Public Function getTotalTime() As TimeSpan
         Dim total As New TimeSpan(0)

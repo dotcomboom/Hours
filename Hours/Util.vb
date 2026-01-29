@@ -117,6 +117,7 @@ Public Class Filesystem
                         If reader.Name = "Session" Then
                             currentSession = New Session(Date.MinValue, Date.MinValue)
                             currentSession.Parent = currentActivity.Events
+                            currentSession.Activity = currentActivity
                             currentSession.Comment = ""
                             currentSession.Rating = 0
                             currentActivity.Events.Add(currentSession)

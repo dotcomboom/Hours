@@ -155,6 +155,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="brick.ico" />
+    <None Include="Resources\report.png" />
+    <None Include="Resources\comment_add.png" />
     <None Include="Resources\control_play_blue.png" />
     <None Include="Resources\control_play.png" />
     <None Include="Resources\control_pause.png" />

@@ -5,10 +5,12 @@
     Private groups As New Dictionary(Of String, ListViewGroup)
     Private activityGroups As New Dictionary(Of String, ListViewGroup)
     Private attachmentGroups As New Dictionary(Of String, ListViewGroup)
-    Private act As Activity
+    Private displayedActivity As Activity
     Private highlightToday As Boolean = False
 
     Private timingActivity As Activity
+
+    Private latestSession As Session
 
 
     Private Sub frmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -16,7 +18,7 @@
         loadList()
 
         'If activities.Count = 0 Then
-        If act Is Nothing Then
+        If displayedActivity Is Nothing Then
             'Panel1.BringToFront()
             'Panel1.Show()
             lblActiveProject.Text = "Welcome to " & Application.ProductName & "!"
@@ -33,11 +35,11 @@
             '    msgb()
             'End Try
         Else
-            FileSystemWatcher1.EnableRaisingEvents = False
+            DataXMLChangeWatcher.EnableRaisingEvents = False
             My.Computer.FileSystem.WriteAllText("hours_data.xml",
                                                 "<?xml version=""1.0"" encoding=""utf-8""?><Projects><Activity Name=""Default""></Activity></Projects>", False)
             LoadData()
-            FileSystemWatcher1.EnableRaisingEvents = True
+            DataXMLChangeWatcher.EnableRaisingEvents = True
         End If
         'SplitContainer1.SplitterDistance = 999
 
@@ -46,7 +48,7 @@
         createFirstProject()
 
         If activities.Count > 0 Then
-            act = activities(0)
+            displayedActivity = activities(0)
             loadActivityUX()
         End If
     End Sub
@@ -56,7 +58,7 @@
         Dim inactive As Boolean = True
         For Each item As ListViewItem In lstProjects.Items
             Dim a As Activity = CType(item.Tag, Activity)
-            If a.Name = act.Name Then
+            If a?.Name = act?.Name Then
                 item.ForeColor = Color.Black
                 'If highlightInactive Then
 
@@ -88,8 +90,8 @@
         Next
     End Sub
 
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPause.Click
-        timingActivity.stopTiming()
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPause.Click, PauseToolStripMenuItem.Click
+        timingActivity?.stopTiming()
 
         btnPause.Enabled = False
         btnStart.Enabled = True
@@ -110,7 +112,7 @@
         '    End If
         'Next
 
-        act = timingActivity
+        displayedActivity = timingActivity
         loadActivityUX()
 
         UpdateFormText()
@@ -120,7 +122,7 @@
     End Sub
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnStart.Click
-        timingActivity = act
+        timingActivity = displayedActivity
         timingActivity.startTiming()
         btnStart.Enabled = False
         btnPause.Enabled = True
@@ -154,7 +156,7 @@
             'Panel1.Hide()
 
             If btnStart.Enabled Then
-                act = n
+                displayedActivity = n
                 lstProjects.SelectedItems.Clear()
                 item.Selected = True
                 'ListBox1.SelectedIndex = ListBox1.Items.Count - 1
@@ -177,16 +179,16 @@
     End Sub
 
     Private Sub loadActivityUX()
-        If act Is Nothing Then
+        If displayedActivity Is Nothing Then
             Exit Sub
         End If
         If activities.Count > 0 Then
-            txtTimeToday.Text = act.getTotalOnDay(Date.Today).ToString("hh\:mm\:ss")
-            txtTimeTotal.Text = act.getTotalTime().ToString("hh\:mm\:ss")
-            lblActiveProject.Text = act.Name
-            lblGroup.Text = act.Category
+            txtTimeToday.Text = displayedActivity.getTotalOnDay(Date.Today).ToString("hh\:mm\:ss")
+            txtTimeTotal.Text = displayedActivity.getTotalTime().ToString("hh\:mm\:ss")
+            lblActiveProject.Text = displayedActivity.Name
+            lblGroup.Text = displayedActivity.Category
 
-            If Not act.Category.Length > 0 Then
+            If Not displayedActivity.Category.Length > 0 Then
                 lblGroup.Text = "Default"
             End If
 
@@ -202,7 +204,7 @@
 
             Dim recentSessionsExist As Boolean = False
 
-            For Each s As Session In act.Events
+            For Each s As Session In displayedActivity.Events
                 If s.Rating > 0 Then
                     ratingSum += s.Rating
                     ratedSessionScales += frmSession.barRating.Maximum
@@ -215,7 +217,7 @@
 
                 Dim n As New ListViewItem
                 'n.Text = s.StartTime.ToString
-                n.Text = Math.Round(s.TimeSpan.TotalMinutes) & " min"
+                n.Text = GetFriendlySessionTime(s)
                 n.Tag = s
                 n.ImageIndex = 0
 
@@ -261,7 +263,7 @@
         lstSessions.ListViewItemSorter = New ListViewItemSessionComparer()
         lstSessions.Sort()
 
-        If timingActivity IsNot Nothing And timingActivity IsNot act Then
+        If timingActivity IsNot Nothing And timingActivity IsNot displayedActivity Then
             If timingActivity.beingTimed Then
                 picRecording.Image = My.Resources.hourglass_go
                 lblTimingActivity.Text = timingActivity.Name
@@ -275,6 +277,10 @@
             lblTimingActivity.Hide()
         End If
     End Sub
+
+    Private Function GetFriendlySessionTime(s As Session) As String
+        Return Math.Round(s.TimeSpan.TotalMinutes) & " min"
+    End Function
 
     Shared latestAtTheTop As Boolean = True
 
@@ -300,7 +306,7 @@
 
         If sender.Equals(lstProjects) Then
             If lstProjects.SelectedItems.Count > 0 Then
-                act = CType(lstProjects.SelectedItems(0).Tag, Activity)
+                displayedActivity = CType(lstProjects.SelectedItems(0).Tag, Activity)
             End If
         End If
 
@@ -321,32 +327,39 @@
         lstProjects.Groups.Clear()
         activityGroups.Clear()
 
-        For Each a As Activity In activities
-            Dim activityItem As New ListViewItem
-            activityItem.Text = a.Name
-            activityItem.Tag = a
+        Dim ActivitiesToCategories As Dictionary(Of String, List(Of Activity)) = MakeActivityDictionaryCore()
+        Dim activityItem As ListViewItem
+        Dim group As ListViewGroup
 
-            If a.Category Is Nothing Or a.Category = "" Then
-                'viewProjects.Items.Add(activityItem)
-            ElseIf activityGroups.ContainsKey(a.Category) Then
-                'activityItem.Group = activityGroups(a.Category)
-                activityItem.Group = activityGroups(a.Category)
+        For Each c As String In ActivitiesToCategories.Keys
+            For Each a As Activity In ActivitiesToCategories(c)
+                activityItem = New ListViewItem
+                activityItem.Text = a.Name
+                activityItem.Tag = a
 
-            Else
-                Dim group As New ListViewGroup(a.Category)
-                activityGroups.Add(a.Category, group)
-                activityItem.Group = group
-                lstProjects.Groups.Add(group)
+                If a.Category Is Nothing Or a.Category = "" Then
+                    'viewProjects.Items.Add(activityItem)
+                ElseIf activityGroups.ContainsKey(a.Category) Then
+                    'activityItem.Group = activityGroups(a.Category)
+                    activityItem.Group = activityGroups(a.Category)
 
-                'viewProjects.Items.Add(activityItem)
-            End If
+                Else
+                    group = New ListViewGroup(a.Category)
+                    activityGroups.Add(a.Category, group)
+                    activityItem.Group = group
+                    lstProjects.Groups.Add(group)
 
-            lstProjects.Items.Add(activityItem)
+                    'viewProjects.Items.Add(activityItem)
+                End If
 
-            UpdateActivityHighlight(a)
+                lstProjects.Items.Add(activityItem)
 
-            lstProjects.Columns(0).Width = -2
+                UpdateActivityHighlight(a)
+
+                lstProjects.Columns(0).Width = -2
+            Next
         Next
+
         If lstProjects.Items.Count > 0 Then
             lstProjects.EnsureVisible(0)
         End If
@@ -360,12 +373,26 @@
         lstProjects.EndUpdate()
     End Sub
 
+    Private Function MakeActivityDictionaryCore() As Dictionary(Of String, List(Of Activity))
+        Dim ActivitiesToCategories As New Dictionary(Of String, List(Of Activity))
+        'Dim Act As Activity
+        ' Hook up activities to categories
+        For Each Act As Activity In activities
+            If Not ActivitiesToCategories.ContainsKey(Act.Category) Then
+                ActivitiesToCategories.Add(Act.Category, New List(Of Activity))
+            End If
+            ActivitiesToCategories(Act.Category).Add(Act)
+            ActivitiesToCategories(Act.Category).Sort()
+        Next
+        Return ActivitiesToCategories
+    End Function
+
     Private Sub LabellblActiveProject_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblActiveProject.Click
-        If act IsNot Nothing Then
+        If displayedActivity IsNot Nothing Then
 
             Dim newName As String = InputBox("Enter the name for the activity.", "Set Activity Name", lblActiveProject.Text)
             If newName.Count > 0 Then
-                act.Name = newName
+                displayedActivity.Name = newName
                 loadList()
             End If
 
@@ -373,16 +400,20 @@
 
     End Sub
 
+    Private Sub editSession(ByVal s As Session)
+        Dim frm As New frmSession
+        frm.loadSessionData(s)
+        frm.ShowDialog()
+        If CBool(frm.saved) Then
+            UpdateActivityHighlight(displayedActivity)
+            loadActivityUX()
+            SaveData()
+        End If
+    End Sub
+
     Private Sub lstSessions_ItemActivate(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstSessions.ItemActivate
         If lstSessions.SelectedItems.Count > 0 Then
-            Dim frm As New frmSession
-            frm.loadSessionData(CType(lstSessions.SelectedItems(0).Tag, Session))
-            frm.ShowDialog()
-            If CBool(frm.saved) Then
-                UpdateActivityHighlight(act)
-                loadActivityUX()
-                SaveData()
-            End If
+            editSession(CType(lstSessions.SelectedItems(0).Tag, Session))
         End If
     End Sub
 
@@ -390,17 +421,17 @@
         'TODO: sync activities so that it persists current session
         Dim sl As New Filesystem
         'Try
-        If Not act Is Nothing Then
-            If act.beingTimed = True Then
-                Dim activeName As String = act.Name
-                Dim activeStart As Date = act.TimerBegin
+        If Not displayedActivity Is Nothing Then
+            If displayedActivity.beingTimed = True Then
+                Dim activeName As String = displayedActivity.Name
+                Dim activeStart As Date = displayedActivity.TimerBegin
                 activities = sl.LoadFromXML("hours_data.xml")
                 Dim aFound As Boolean = False
                 For Each newAct As Activity In activities
 
                     If newAct.Name = activeName Then
                         aFound = True
-                        act = newAct
+                        displayedActivity = newAct
                         timingActivity = newAct
 
                         timingActivity.startTiming()
@@ -412,7 +443,7 @@
                 Next
                 If Not aFound Then
                     MsgBox("The activity you are currently timing does not exist in the target file. We'll add it to the file, but keep a watch out for unintended behavior.", MsgBoxStyle.Exclamation, "yipe")
-                    activities.Add(act)
+                    activities.Add(displayedActivity)
                 End If
             End If
         Else
@@ -427,7 +458,7 @@
     End Sub
 
     Private Sub SaveData() Handles btnRetrySave.LinkClicked
-        FileSystemWatcher1.EnableRaisingEvents = False
+        DataXMLChangeWatcher.EnableRaisingEvents = False
         Try
             Dim sl As New Filesystem
             sl.SaveToXML(activities, "hours_data.xml")
@@ -436,7 +467,7 @@
         Catch ex As Exception
             Panel2.Show()
         End Try
-        FileSystemWatcher1.EnableRaisingEvents = True
+        DataXMLChangeWatcher.EnableRaisingEvents = True
     End Sub
 
     Private Function chunk(ByVal text As String, ByVal maxint As Integer) As String
@@ -470,7 +501,7 @@
         loadActivityUX()
     End Sub
 
-    Private Sub ContextMenuStrip1_Opening(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles ContextMenuStrip1.Opening
+    Private Sub ContextMenuStrip1_Opening(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles SessionsCMS.Opening
         UseGroupsToolStripMenuItem.Checked = lstSessions.ShowGroups
     End Sub
 
@@ -483,11 +514,11 @@
     End Sub
 
     Private Sub frmMain_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
-        If act Is Nothing Then
+        If displayedActivity Is Nothing Then
             Exit Sub
         End If
-        If act.beingTimed Then
-            act.stopTiming()
+        If displayedActivity.beingTimed Then
+            displayedActivity.stopTiming()
         End If
         If Not timingActivity Is Nothing Then
             If timingActivity.beingTimed Then
@@ -509,7 +540,7 @@
             txtTimeToday.Text = d.ToString("hh\:mm\:ss")
         Else
             lblTimeToday.Text = "Time today"
-            txtTimeToday.Text = act.getTotalOnDay(Date.Today).ToString("hh\:mm\:ss")
+            txtTimeToday.Text = displayedActivity.getTotalOnDay(Date.Today).ToString("hh\:mm\:ss")
         End If
     End Sub
 
@@ -546,7 +577,7 @@
         End If
         Dim p As Activity = CType(lstProjects.Items(e.Item).Tag, Activity)
         p.Name = e.Label
-        If p.Equals(act) Then
+        If p.Equals(displayedActivity) Then
             lblActiveProject.Text = e.Label
         End If
 
@@ -565,7 +596,7 @@
         Next
     End Sub
 
-    Private Sub FileSystemWatcher1_Changed(sender As System.Object, e As System.IO.FileSystemEventArgs) Handles FileSystemWatcher1.Changed
+    Private Sub FileSystemWatcher1_Changed(sender As System.Object, e As System.IO.FileSystemEventArgs) Handles DataXMLChangeWatcher.Changed
         If MsgBox("The Hours data was updated outside this program. Do you want to reload data? (This will not interrupt your session.)" & vbNewLine & "If the file was modified by mistake, select Cancel and click on the Save button to prevent loss.", CType(MsgBoxStyle.OkCancel + MsgBoxStyle.Information, MsgBoxStyle), "Reload data") = MsgBoxResult.Ok Then
             LoadData()
         End If
@@ -593,7 +624,7 @@
         If Not timingActivity Is Nothing Then
             If timingActivity.beingTimed Then
                 hoveringBtn = True
-                Timer2.Enabled = True
+                DurationTimer.Enabled = True
                 Timer2_Tick()
             End If
         End If
@@ -608,6 +639,9 @@
     End Sub
 
     Private Function getTimingDuration() As String
+        If timingActivity Is Nothing Then
+            Return "0:00"
+        End If
         Dim dur As TimeSpan = Now.Subtract(timingActivity.TimerBegin)
         Dim z As String = ""
         If dur.Minutes < 10 Then
@@ -620,27 +654,35 @@
         Return Math.Floor(dur.TotalHours) & ":" & z & dur.Minutes '& ":" & zz & dur.Seconds
     End Function
 
-    Private Sub Timer2_Tick() Handles Timer2.Tick
+    Private Sub Timer2_Tick() Handles DurationTimer.Tick
         If hoveringBtn Then
             btnPause.Text = getTimingDuration()
+        End If
+        If NotifyCMS.Visible Then
+            PauseToolStripMenuItem.Text = getTimingDuration()
         End If
         If hoveringHourglass Then
             If Not ToolTip1.GetToolTip(picRecording) = getTimingDuration() Then
                 ToolTip1.SetToolTip(picRecording, getTimingDuration())
             End If
+        End If 
+    End Sub
+
+    Private Sub GoToTimingActivity() Handles PictureBox5.Click, ActiveActivityToolStripMenuItem.Click
+        If Not ReferenceEquals(displayedActivity, timingActivity) Then
+            displayedActivity = timingActivity
+            lstProjects.FindItemWithText(displayedActivity.Name).Selected = True
+            loadActivityUX()
         End If
+        ShowMe()
     End Sub
 
     Private Sub PictureBox5_Click(sender As System.Object, e As System.EventArgs) Handles picRecording.Click
-        If Not ReferenceEquals(act, timingActivity) Then
-            act = timingActivity
-            lstProjects.FindItemWithText(act.Name).Selected = True
-            loadActivityUX()
-        End If
+        GoToTimingActivity()
     End Sub
 
     Private Sub time1_ValueChanged(sender As System.Object, e As System.EventArgs)
-        Timer1.Enabled = True
+        SessionTimer.Enabled = True
     End Sub
 
     Private Sub picRecording_MouseEnter(sender As System.Object, e As System.EventArgs) Handles picRecording.MouseEnter
@@ -672,10 +714,10 @@
         If Not (e.CancelEdit Or e.Label = "") Then
             Dim obj As Activity = CType(lstProjects.SelectedItems(0).Tag, Activity)
             obj.Name = e.Label
-            If obj.Equals(act) Then
-                lblActiveProject.Text = act.Name
+            If obj.Equals(displayedActivity) Then
+                lblActiveProject.Text = displayedActivity.Name
                 If timingActivity IsNot Nothing Then
-                    If timingActivity.Equals(act) Then
+                    If timingActivity.Equals(displayedActivity) Then
                         UpdateFormText()
                     End If
                 End If
@@ -686,7 +728,7 @@
     Private Sub UpdateFormText()
         If timingActivity IsNot Nothing Then
             If timingActivity.beingTimed Then
-                Me.Text = act.Name & " - " & Application.ProductName
+                Me.Text = displayedActivity.Name & " - " & Application.ProductName
             Else
                 Me.Text = Application.ProductName
             End If
@@ -703,10 +745,10 @@
         If proj.Events.Count = 1 Then
             s = ""
         End If
-        If MsgBox("Delete this activity? " & vbNewLine & "This activity contains " & proj.Events.Count & " session" & s & " with a total of " & proj.getFriendlyTotalTime() & ".", MsgBoxStyle.OkCancel, act.Name) = MsgBoxResult.Ok Then
+        If MsgBox("Delete this activity? " & vbNewLine & "This activity contains " & proj.Events.Count & " session" & s & " with a total of " & proj.getFriendlyTotalTime() & ".", MsgBoxStyle.OkCancel, displayedActivity.Name) = MsgBoxResult.Ok Then
             activities.Remove(proj)
             lstProjects.SelectedItems(0).Remove()
-            If act.Equals(proj) Then
+            If displayedActivity.Equals(proj) Then
                 If lstProjects.Items.Count > 0 Then
                     lstProjects.Items(0).Selected = True
                 Else
@@ -736,7 +778,7 @@
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles lblGroup.Click, CategorizeToolStripMenuItem.Click
         'If lstProjects.SelectedItems.Count > 0 Then
         '    Dim activ As Activity = CType(lstProjects.SelectedItems(0).Tag, Activity)
-        Dim activ As Activity = act
+        Dim activ As Activity = displayedActivity
         Dim cat As String = activ.Category
         If cat.Count = 0 Then
             cat = "Default"
@@ -780,7 +822,190 @@
         End If
     End Sub
 
-    Private Sub SaveData(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles btnRetrySave.LinkClicked
-
+    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
+        Me.Close()
     End Sub
+
+    Private Sub ShowMe()
+        Me.Show()
+        If Me.WindowState = FormWindowState.Minimized Then
+            Me.WindowState = FormWindowState.Normal
+        End If
+        Me.TopMost = True
+        Me.TopMost = False
+    End Sub
+
+    Private Sub OpenHoursToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenHoursToolStripMenuItem.Click
+        ShowMe()
+    End Sub
+
+    Private Function GetLatestSessions(ByVal max As Integer) As List(Of Session)
+        Dim LatestSessions As New List(Of Session)
+        Dim HighestSession As Session
+        Dim LowestSession As Session
+
+
+        For Each a As Activity In activities
+            For Each s As Session In a.Events
+                If LatestSessions.Count = 0 Then
+                    LatestSessions.Add(s)
+                    HighestSession = s
+                    LowestSession = s
+                    Continue For
+                ElseIf LatestSessions.Contains(s) Then
+                    Continue For
+                ElseIf s.StartTime > HighestSession.StartTime Then
+                    HighestSession = s
+                    LatestSessions.Insert(0, s)
+                ElseIf s.StartTime < LowestSession.StartTime Then
+                    If LatestSessions.Count < max Then
+                        LatestSessions.Add(s)
+                        LowestSession = s
+                    Else
+                        ' do nothing as this session is older than the oldest session we're keeping track of
+                        'LatestSessions(LatestSessions.Count - 1) = s
+                    End If
+                ElseIf s.StartTime < HighestSession.StartTime And s.StartTime > LowestSession.StartTime Then
+                    For i As Integer = 0 To LatestSessions.Count - 1
+                        ' find where to put it
+                        If LatestSessions(i).StartTime <= s.StartTime Then
+                            LatestSessions.Insert(i, s)
+                            Exit For
+                        End If
+                    Next
+                End If
+                If LatestSessions.Count > max Then
+                    LatestSessions.RemoveRange(max, LatestSessions.Count - max)
+                    HighestSession = LatestSessions(0)
+                    LowestSession = LatestSessions(LatestSessions.Count - 1)
+                End If
+            Next
+        Next
+
+
+        Return LatestSessions
+    End Function
+
+    Private Function MakeActivityDictionary() As Dictionary(Of String, List(Of Activity))
+        Dim ActivitiesToCategories As New Dictionary(Of String, List(Of Activity))
+        Dim Act As Activity
+        ' Hook up activities to categories
+        For Each ActivityItem As ListViewItem In lstProjects.Items
+            Act = CType(ActivityItem.Tag, Activity)
+            If Not ActivitiesToCategories.ContainsKey(Act.Category) Then
+                ActivitiesToCategories.Add(Act.Category, New List(Of Activity))
+            End If
+            ActivitiesToCategories(Act.Category).Add(Act)
+            ActivitiesToCategories(Act.Category).Sort()
+        Next
+        Return ActivitiesToCategories
+    End Function
+
+    Private Sub NotifyCMS_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles NotifyCMS.Opening
+        Dim ActivitiesToCategories As Dictionary(Of String, List(Of Activity)) = MakeActivityDictionary()
+
+        NotifyCMS.Items.Clear()
+
+        Dim AddingCategory As ToolStripMenuItem
+        Dim AddingActivity As ToolStripMenuItem
+
+        For Each Category As String In ActivitiesToCategories.Keys
+
+            AddingCategory = CType(NotifyCMS.Items.Add(Category), ToolStripMenuItem)
+            AddingCategory.Image = Bitmap.FromHicon(My.Resources.brick.Handle)
+
+            For Each Actt As Activity In ActivitiesToCategories(Category)
+                AddingActivity = CType(AddingCategory.DropDownItems.Add(Actt.Name), ToolStripMenuItem)
+                AddingActivity.Tag = Actt
+                AddingActivity.Checked = Actt.beingTimed
+                AddingActivity.Image = My.Resources.control_play_blue
+                AddHandler AddingActivity.Click, Sub(sender2, eventargs2)
+                                                     DropDownTime(Actt, sender2, eventargs2)
+                                                 End Sub
+            Next
+
+            NotifyCMS.Items.Add(AddingCategory)
+        Next
+
+        DurationTimer.Start()
+        NotifyCMS.Items.Add(ToolStripSeparator3)
+
+        ' current timer
+        If timingActivity IsNot Nothing Then
+            ActiveActivityToolStripMenuItem.Image = My.Resources.hourglass
+            ActiveActivityToolStripMenuItem.Text = timingActivity.Name
+            ActiveActivityToolStripMenuItem.Enabled = True
+            NotifyCMS.Items.Add(ActiveActivityToolStripMenuItem)
+            NotifyCMS.Items.Add(PauseToolStripMenuItem)
+        Else
+            ActiveActivityToolStripMenuItem.Image = My.Resources.hourglass
+            ActiveActivityToolStripMenuItem.Text = "No timer active"
+            ActiveActivityToolStripMenuItem.Enabled = False
+            NotifyCMS.Items.Add(ActiveActivityToolStripMenuItem)
+        End If
+        NotifyCMS.Items.Add(New ToolStripSeparator)
+
+        Dim latestSessions As List(Of Session) = GetLatestSessions(5)
+
+        Dim sessionItem As ToolStripMenuItem
+
+        If latestSessions.Count > 0 Then
+            For Each s As Session In latestSessions
+                sessionItem = New ToolStripMenuItem
+                sessionItem.Image = LatestSessionToolStripMenuItem.Image
+                sessionItem.Tag = s
+                If s.Comment.Length > 0 Then
+                    sessionItem.Text = GetFriendlySessionTime(s) & ": " & s.Comment & " (" & s.StartTime.ToShortDateString & " " & s.StartTime.ToShortTimeString() & ")"
+                Else
+                    sessionItem.Text = GetFriendlySessionTime(s) & ": " & s.Activity?.Name & " (" & s.StartTime.ToShortDateString & " " & s.StartTime.ToShortTimeString() & ")"
+                End If
+                NotifyCMS.Items.Add(sessionItem)
+                AddHandler sessionItem.Click, Sub(sender2, eventargs2)
+                                                  doEditWithSession(s)
+                                              End Sub
+            Next
+        End If
+
+        NotifyCMS.Items.Add(New ToolStripSeparator)
+
+        NotifyCMS.Items.Add(ExitToolStripMenuItem)
+        NotifyCMS.Items.Add(OpenHoursToolStripMenuItem)
+    End Sub
+
+    Private Sub DropDownTime(act As Activity, sender As Object, e As EventArgs)
+        ' Quit timing if we're timing
+        Button1_Click(sender, e)
+        ' Load up that project in the projects list view
+        'Dim Act As Activity = TimeThis
+        displayedActivity = act
+        loadActivityUX()
+        ' Start timing
+        Button2_Click(sender, e)
+    End Sub
+
+    Private Sub PauseToolStripMenuItem_MouseEnter(sender As Object, e As EventArgs) Handles PauseToolStripMenuItem.MouseEnter
+        If timingActivity IsNot Nothing Then
+            PauseToolStripMenuItem.Text = getTimingDuration()
+        End If
+    End Sub
+
+    Private Sub NotifyCMS_Closed(sender As Object, e As ToolStripDropDownClosedEventArgs) Handles NotifyCMS.Closed
+        If Not hoveringBtn Or hoveringHourglass Then
+            DurationTimer.Stop()
+        End If
+    End Sub
+
+    Private Sub doEditWithSession(s As Session)
+        If s.Activity IsNot Nothing Then
+            If Not s.Activity.Equals(displayedActivity) Then
+                displayedActivity = s.Activity
+                loadActivityUX()
+            End If
+        End If
+        editSession(s)
+    End Sub
+    'Private Sub LatestSessionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LatestSessionToolStripMenuItem.Click
+    '    Dim s As Session = CType(LatestSessionToolStripMenuItem.Tag, Session)
+    '    doEditWithSession(s)
+    'End Sub
 End Class

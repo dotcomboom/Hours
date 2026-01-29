@@ -26,12 +26,19 @@ Partial Class frmMain
 		Dim ColumnHeader1 As System.Windows.Forms.ColumnHeader
 		Dim ColumnHeader3 As System.Windows.Forms.ColumnHeader
 		Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
-		Dim ListViewItem6 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("First Section", 13)
-		Dim ListViewItem7 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Second Section", 13)
-		Dim ListViewItem8 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Third Section", 13)
-		Dim ListViewItem9 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Conclusion", 13)
-		Dim ListViewItem10 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Intro", 13)
+		Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("First Section", 13)
+		Dim ListViewItem2 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Second Section", 13)
+		Dim ListViewItem3 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Third Section", 13)
+		Dim ListViewItem4 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Conclusion", 13)
+		Dim ListViewItem5 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Intro", 13)
 		Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
+		Me.NotifyCMS = New System.Windows.Forms.ContextMenuStrip(Me.components)
+		Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+		Me.LatestSessionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+		Me.ActiveActivityToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+		Me.PauseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+		Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+		Me.OpenHoursToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.btnPause = New System.Windows.Forms.Button()
 		Me.btnStart = New System.Windows.Forms.Button()
 		Me.txtTimeTotal = New System.Windows.Forms.Label()
@@ -39,7 +46,7 @@ Partial Class frmMain
 		Me.btnAddProject = New System.Windows.Forms.Button()
 		Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
 		Me.lstSessions = New System.Windows.Forms.ListView()
-		Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+		Me.SessionsCMS = New System.Windows.Forms.ContextMenuStrip(Me.components)
 		Me.DurationViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.UseGroupsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.EarliestFirstToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -49,7 +56,7 @@ Partial Class frmMain
 		Me.picSaveError = New System.Windows.Forms.PictureBox()
 		Me.btnRetrySave = New System.Windows.Forms.LinkLabel()
 		Me.Panel2 = New System.Windows.Forms.Panel()
-		Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+		Me.ActivitiesCMS = New System.Windows.Forms.ContextMenuStrip(Me.components)
 		Me.CategorizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.AddProjectToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
@@ -58,8 +65,8 @@ Partial Class frmMain
 		Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
 		Me.ProgressBar2 = New System.Windows.Forms.ProgressBar()
 		Me.ProgressBar3 = New System.Windows.Forms.ProgressBar()
-		Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-		Me.FileSystemWatcher1 = New System.IO.FileSystemWatcher()
+		Me.SessionTimer = New System.Windows.Forms.Timer(Me.components)
+		Me.DataXMLChangeWatcher = New System.IO.FileSystemWatcher()
 		Me.splitProjects = New System.Windows.Forms.SplitContainer()
 		Me.Panel1 = New System.Windows.Forms.Panel()
 		Me.Panel4 = New System.Windows.Forms.Panel()
@@ -75,20 +82,21 @@ Partial Class frmMain
 		Me.lblTimingActivity = New System.Windows.Forms.Label()
 		Me.lblGroup = New System.Windows.Forms.Label()
 		Me.splitMain = New System.Windows.Forms.SplitContainer()
+		Me.lstProjects = New System.Windows.Forms.ListView()
+		Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.lblTimeTotal = New System.Windows.Forms.Label()
 		Me.lblTimeToday = New System.Windows.Forms.Label()
 		Me.txtTimeToday = New System.Windows.Forms.Label()
-		Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
+		Me.DurationTimer = New System.Windows.Forms.Timer(Me.components)
 		Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
-		Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-		Me.lstProjects = New System.Windows.Forms.ListView()
 		ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-		Me.ContextMenuStrip1.SuspendLayout()
+		Me.NotifyCMS.SuspendLayout()
+		Me.SessionsCMS.SuspendLayout()
 		CType(Me.picRecording, System.ComponentModel.ISupportInitialize).BeginInit()
 		CType(Me.picSaveError, System.ComponentModel.ISupportInitialize).BeginInit()
-		Me.ContextMenuStrip2.SuspendLayout()
-		CType(Me.FileSystemWatcher1, System.ComponentModel.ISupportInitialize).BeginInit()
+		Me.ActivitiesCMS.SuspendLayout()
+		CType(Me.DataXMLChangeWatcher, System.ComponentModel.ISupportInitialize).BeginInit()
 		CType(Me.splitProjects, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.splitProjects.Panel1.SuspendLayout()
 		Me.splitProjects.SuspendLayout()
@@ -116,8 +124,58 @@ Partial Class frmMain
 		'
 		'NotifyIcon1
 		'
-		Me.NotifyIcon1.Text = "NotifyIcon1"
+		Me.NotifyIcon1.ContextMenuStrip = Me.NotifyCMS
+		Me.NotifyIcon1.Icon = CType(resources.GetObject("NotifyIcon1.Icon"), System.Drawing.Icon)
+		Me.NotifyIcon1.Text = "Hours"
 		Me.NotifyIcon1.Visible = True
+		'
+		'NotifyCMS
+		'
+		Me.NotifyCMS.ImageScalingSize = New System.Drawing.Size(20, 20)
+		Me.NotifyCMS.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripSeparator3, Me.LatestSessionToolStripMenuItem, Me.ActiveActivityToolStripMenuItem, Me.PauseToolStripMenuItem, Me.ExitToolStripMenuItem, Me.OpenHoursToolStripMenuItem})
+		Me.NotifyCMS.Name = "NotifyCMS"
+		Me.NotifyCMS.Size = New System.Drawing.Size(215, 168)
+		'
+		'ToolStripSeparator3
+		'
+		Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+		Me.ToolStripSeparator3.Size = New System.Drawing.Size(211, 6)
+		'
+		'LatestSessionToolStripMenuItem
+		'
+		Me.LatestSessionToolStripMenuItem.Image = Global.Hours.My.Resources.Resources.report
+		Me.LatestSessionToolStripMenuItem.Name = "LatestSessionToolStripMenuItem"
+		Me.LatestSessionToolStripMenuItem.Size = New System.Drawing.Size(214, 26)
+		Me.LatestSessionToolStripMenuItem.Text = "Most recent session"
+		Me.LatestSessionToolStripMenuItem.Visible = False
+		'
+		'ActiveActivityToolStripMenuItem
+		'
+		Me.ActiveActivityToolStripMenuItem.Enabled = False
+		Me.ActiveActivityToolStripMenuItem.Image = Global.Hours.My.Resources.Resources.hourglass
+		Me.ActiveActivityToolStripMenuItem.Name = "ActiveActivityToolStripMenuItem"
+		Me.ActiveActivityToolStripMenuItem.Size = New System.Drawing.Size(214, 26)
+		Me.ActiveActivityToolStripMenuItem.Text = "No timer active"
+		'
+		'PauseToolStripMenuItem
+		'
+		Me.PauseToolStripMenuItem.Image = Global.Hours.My.Resources.Resources.control_pause
+		Me.PauseToolStripMenuItem.Name = "PauseToolStripMenuItem"
+		Me.PauseToolStripMenuItem.Size = New System.Drawing.Size(214, 26)
+		Me.PauseToolStripMenuItem.Text = "Pause"
+		'
+		'ExitToolStripMenuItem
+		'
+		Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
+		Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(214, 26)
+		Me.ExitToolStripMenuItem.Text = "Exit"
+		'
+		'OpenHoursToolStripMenuItem
+		'
+		Me.OpenHoursToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.OpenHoursToolStripMenuItem.Name = "OpenHoursToolStripMenuItem"
+		Me.OpenHoursToolStripMenuItem.Size = New System.Drawing.Size(214, 26)
+		Me.OpenHoursToolStripMenuItem.Text = "Open Hours"
 		'
 		'btnPause
 		'
@@ -213,7 +271,7 @@ Partial Class frmMain
 		Me.lstSessions.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
 			Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
 		Me.lstSessions.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {ColumnHeader1})
-		Me.lstSessions.ContextMenuStrip = Me.ContextMenuStrip1
+		Me.lstSessions.ContextMenuStrip = Me.SessionsCMS
 		Me.lstSessions.HideSelection = False
 		Me.lstSessions.LargeImageList = Me.ImageList1
 		Me.lstSessions.Location = New System.Drawing.Point(0, 79)
@@ -227,12 +285,12 @@ Partial Class frmMain
 		Me.lstSessions.UseCompatibleStateImageBehavior = False
 		Me.lstSessions.View = System.Windows.Forms.View.Tile
 		'
-		'ContextMenuStrip1
+		'SessionsCMS
 		'
-		Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-		Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DurationViewToolStripMenuItem, Me.UseGroupsToolStripMenuItem, Me.EarliestFirstToolStripMenuItem, Me.ToolStripSeparator2, Me.DiscardSessionToolStripMenuItem})
-		Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-		Me.ContextMenuStrip1.Size = New System.Drawing.Size(211, 114)
+		Me.SessionsCMS.ImageScalingSize = New System.Drawing.Size(20, 20)
+		Me.SessionsCMS.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DurationViewToolStripMenuItem, Me.UseGroupsToolStripMenuItem, Me.EarliestFirstToolStripMenuItem, Me.ToolStripSeparator2, Me.DiscardSessionToolStripMenuItem})
+		Me.SessionsCMS.Name = "ContextMenuStrip1"
+		Me.SessionsCMS.Size = New System.Drawing.Size(211, 114)
 		'
 		'DurationViewToolStripMenuItem
 		'
@@ -321,12 +379,12 @@ Partial Class frmMain
 		Me.Panel2.TabIndex = 17
 		Me.Panel2.Visible = False
 		'
-		'ContextMenuStrip2
+		'ActivitiesCMS
 		'
-		Me.ContextMenuStrip2.ImageScalingSize = New System.Drawing.Size(20, 20)
-		Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CategorizeToolStripMenuItem, Me.AddProjectToolStripMenuItem, Me.ToolStripSeparator1, Me.DeleteProjectToolStripMenuItem})
-		Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-		Me.ContextMenuStrip2.Size = New System.Drawing.Size(178, 88)
+		Me.ActivitiesCMS.ImageScalingSize = New System.Drawing.Size(20, 20)
+		Me.ActivitiesCMS.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CategorizeToolStripMenuItem, Me.AddProjectToolStripMenuItem, Me.ToolStripSeparator1, Me.DeleteProjectToolStripMenuItem})
+		Me.ActivitiesCMS.Name = "ContextMenuStrip2"
+		Me.ActivitiesCMS.Size = New System.Drawing.Size(178, 88)
 		'
 		'CategorizeToolStripMenuItem
 		'
@@ -381,17 +439,17 @@ Partial Class frmMain
 		Me.ProgressBar3.TabIndex = 55
 		Me.ToolTip1.SetToolTip(Me.ProgressBar3, "Target progress")
 		'
-		'Timer1
+		'SessionTimer
 		'
-		Me.Timer1.Enabled = True
-		Me.Timer1.Interval = 1000
+		Me.SessionTimer.Enabled = True
+		Me.SessionTimer.Interval = 1000
 		'
-		'FileSystemWatcher1
+		'DataXMLChangeWatcher
 		'
-		Me.FileSystemWatcher1.EnableRaisingEvents = True
-		Me.FileSystemWatcher1.Filter = "hours_data.xml"
-		Me.FileSystemWatcher1.Path = "."
-		Me.FileSystemWatcher1.SynchronizingObject = Me
+		Me.DataXMLChangeWatcher.EnableRaisingEvents = True
+		Me.DataXMLChangeWatcher.Filter = "hours_data.xml"
+		Me.DataXMLChangeWatcher.Path = "."
+		Me.DataXMLChangeWatcher.SynchronizingObject = Me
 		'
 		'splitProjects
 		'
@@ -456,9 +514,9 @@ Partial Class frmMain
 		Me.ListView1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
 			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {ColumnHeader3, Me.ColumnHeader4})
-		Me.ListView1.ContextMenuStrip = Me.ContextMenuStrip1
+		Me.ListView1.ContextMenuStrip = Me.SessionsCMS
 		Me.ListView1.HideSelection = False
-		Me.ListView1.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem6, ListViewItem7, ListViewItem8, ListViewItem9, ListViewItem10})
+		Me.ListView1.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1, ListViewItem2, ListViewItem3, ListViewItem4, ListViewItem5})
 		Me.ListView1.LargeImageList = Me.ImageList1
 		Me.ListView1.Location = New System.Drawing.Point(1, 119)
 		Me.ListView1.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
@@ -588,6 +646,32 @@ Partial Class frmMain
 		Me.splitMain.SplitterWidth = 5
 		Me.splitMain.TabIndex = 44
 		'
+		'lstProjects
+		'
+		Me.lstProjects.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader2})
+		Me.lstProjects.ContextMenuStrip = Me.ActivitiesCMS
+		Me.lstProjects.Dock = System.Windows.Forms.DockStyle.Fill
+		Me.lstProjects.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.lstProjects.FullRowSelect = True
+		Me.lstProjects.GridLines = True
+		Me.lstProjects.HideSelection = False
+		Me.lstProjects.LabelEdit = True
+		Me.lstProjects.Location = New System.Drawing.Point(0, 0)
+		Me.lstProjects.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+		Me.lstProjects.MultiSelect = False
+		Me.lstProjects.Name = "lstProjects"
+		Me.lstProjects.Size = New System.Drawing.Size(151, 377)
+		Me.lstProjects.Sorting = System.Windows.Forms.SortOrder.Ascending
+		Me.lstProjects.TabIndex = 2
+		Me.lstProjects.TileSize = New System.Drawing.Size(268, 20)
+		Me.lstProjects.UseCompatibleStateImageBehavior = False
+		Me.lstProjects.View = System.Windows.Forms.View.SmallIcon
+		'
+		'ColumnHeader2
+		'
+		Me.ColumnHeader2.Text = "uuu"
+		Me.ColumnHeader2.Width = 0
+		'
 		'lblTimeTotal
 		'
 		Me.lblTimeTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
@@ -596,7 +680,7 @@ Partial Class frmMain
 		Me.lblTimeTotal.Name = "lblTimeTotal"
 		Me.lblTimeTotal.Size = New System.Drawing.Size(95, 19)
 		Me.lblTimeTotal.TabIndex = 66
-		Me.lblTimeTotal.Text = "Time total"
+		Me.lblTimeTotal.Text = "Time tracked"
 		Me.lblTimeTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
 		'
 		'lblTimeToday
@@ -624,35 +708,9 @@ Partial Class frmMain
 		Me.txtTimeToday.Text = "00:00:00"
 		Me.txtTimeToday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
 		'
-		'Timer2
+		'DurationTimer
 		'
-		Me.Timer2.Interval = 1000
-		'
-		'ColumnHeader2
-		'
-		Me.ColumnHeader2.Text = "uuu"
-		Me.ColumnHeader2.Width = 0
-		'
-		'lstProjects
-		'
-		Me.lstProjects.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader2})
-		Me.lstProjects.ContextMenuStrip = Me.ContextMenuStrip2
-		Me.lstProjects.Dock = System.Windows.Forms.DockStyle.Fill
-		Me.lstProjects.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.lstProjects.FullRowSelect = True
-		Me.lstProjects.GridLines = True
-		Me.lstProjects.HideSelection = False
-		Me.lstProjects.LabelEdit = True
-		Me.lstProjects.Location = New System.Drawing.Point(0, 0)
-		Me.lstProjects.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-		Me.lstProjects.MultiSelect = False
-		Me.lstProjects.Name = "lstProjects"
-		Me.lstProjects.Size = New System.Drawing.Size(151, 377)
-		Me.lstProjects.Sorting = System.Windows.Forms.SortOrder.Ascending
-		Me.lstProjects.TabIndex = 2
-		Me.lstProjects.TileSize = New System.Drawing.Size(268, 20)
-		Me.lstProjects.UseCompatibleStateImageBehavior = False
-		Me.lstProjects.View = System.Windows.Forms.View.SmallIcon
+		Me.DurationTimer.Interval = 1000
 		'
 		'frmMain
 		'
@@ -675,11 +733,12 @@ Partial Class frmMain
 		Me.MinimumSize = New System.Drawing.Size(430, 315)
 		Me.Name = "frmMain"
 		Me.Text = "Hours"
-		Me.ContextMenuStrip1.ResumeLayout(False)
+		Me.NotifyCMS.ResumeLayout(False)
+		Me.SessionsCMS.ResumeLayout(False)
 		CType(Me.picRecording, System.ComponentModel.ISupportInitialize).EndInit()
 		CType(Me.picSaveError, System.ComponentModel.ISupportInitialize).EndInit()
-		Me.ContextMenuStrip2.ResumeLayout(False)
-		CType(Me.FileSystemWatcher1, System.ComponentModel.ISupportInitialize).EndInit()
+		Me.ActivitiesCMS.ResumeLayout(False)
+		CType(Me.DataXMLChangeWatcher, System.ComponentModel.ISupportInitialize).EndInit()
 		Me.splitProjects.Panel1.ResumeLayout(False)
 		CType(Me.splitProjects, System.ComponentModel.ISupportInitialize).EndInit()
 		Me.splitProjects.ResumeLayout(False)
@@ -711,18 +770,18 @@ Partial Class frmMain
 	Friend WithEvents picRecording As System.Windows.Forms.PictureBox
 	Friend WithEvents picSaveError As System.Windows.Forms.PictureBox
 	Friend WithEvents btnRetrySave As System.Windows.Forms.LinkLabel
-	Friend WithEvents ContextMenuStrip1 As System.Windows.Forms.ContextMenuStrip
+	Friend WithEvents SessionsCMS As System.Windows.Forms.ContextMenuStrip
 	Friend WithEvents UseGroupsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 	Friend WithEvents DurationViewToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 	Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
-	Friend WithEvents ContextMenuStrip2 As System.Windows.Forms.ContextMenuStrip
+	Friend WithEvents ActivitiesCMS As System.Windows.Forms.ContextMenuStrip
 	Friend WithEvents CategorizeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-	Friend WithEvents Timer1 As System.Windows.Forms.Timer
+	Friend WithEvents SessionTimer As System.Windows.Forms.Timer
 	Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
-	Friend WithEvents FileSystemWatcher1 As System.IO.FileSystemWatcher
+	Friend WithEvents DataXMLChangeWatcher As System.IO.FileSystemWatcher
 	Friend WithEvents splitProjects As System.Windows.Forms.SplitContainer
 	Friend WithEvents splitMain As System.Windows.Forms.SplitContainer
-	Friend WithEvents Timer2 As System.Windows.Forms.Timer
+	Friend WithEvents DurationTimer As System.Windows.Forms.Timer
 	Friend WithEvents Panel2 As Panel
 	Friend WithEvents Panel1 As Panel
 	Friend WithEvents AddProjectToolStripMenuItem As ToolStripMenuItem
@@ -751,4 +810,11 @@ Partial Class frmMain
 	Friend WithEvents Panel4 As Panel
 	Friend WithEvents lstProjects As ListView
 	Friend WithEvents ColumnHeader2 As ColumnHeader
+	Friend WithEvents NotifyCMS As ContextMenuStrip
+	Friend WithEvents PauseToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
+	Friend WithEvents OpenHoursToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents ActiveActivityToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents LatestSessionToolStripMenuItem As ToolStripMenuItem
 End Class

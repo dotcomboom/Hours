@@ -4,6 +4,7 @@
     Public Property Comment As String = ""
     Public Property Rating As Integer = 0
     Public Property Parent As List(Of Session)
+    Public Property Activity As Activity
 
     Public Sub New(ByVal start As DateTime, ByVal endtime As DateTime)
         Me.StartTime = start
